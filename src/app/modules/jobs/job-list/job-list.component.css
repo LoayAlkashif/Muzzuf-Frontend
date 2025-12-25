@@ -1,0 +1,98 @@
+.welcome {
+  background: linear-gradient(180deg, #ffffff, #f5f7fa);
+  padding: 60px 20px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+
+.welcome h1 {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.welcome p {
+  color: var(--text-muted);
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+
+.search-box {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.search-box input {
+  width: 420px;
+  padding: 14px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  font-size: 14px;
+}
+
+.search-box button {
+  padding: 14px 26px;
+  border-radius: 6px;
+  border: none;
+  background-color: var(--primary);
+  color: #fff;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.search-box button:hover {
+  background-color: var(--primary-dark);
+}
+
+.job-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  margin-bottom: 16px;
+  transition: box-shadow 0.3s ease;
+}
+
+.job-card:hover {
+  box-shadow: 0 apx 14px rgba(0, 0, 0, 0, 8);
+}
+
+.company {
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.location {
+  color: #555;
+  font-size: 14px;
+}
+
+.desc {
+  margin-top: 10px;
+  color: #444;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px 0;
+  gap: 10px;
+}
+
+.pagination button {
+  padding: 8px 14px;
+  border: 1px solid var(--border);
+  background-color: #ffffff;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination span {
+  font-weight: 500;
+}

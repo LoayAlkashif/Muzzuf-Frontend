@@ -1,0 +1,24 @@
+.navbar{
+    background: #fff;
+    border-bottom:  1px solid var(--border);
+    padding: 14px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar a{
+    text-decoration: none;
+    color: var(--text-dark);
+    margin-left: 20px;
+    font-weight: 500;
+}
+
+.navbar a:hover{
+    color: var(--primary);
+}
+
+img{
+    height: 40px;
+    width: auto;
+}

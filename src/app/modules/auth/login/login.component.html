@@ -1,0 +1,37 @@
+<div class="login-page">
+  <div class="overlay"></div>
+
+  <div class="login-wrapper">
+    <img class="logo" [src]="MuzzufLogo" alt="Muzzuf Logo" />
+
+    <div class="login-card">
+      <h2>Welcome Back</h2>
+
+      <form (ngSubmit)="login()">
+        <input
+          type="email"
+          placeholder="Email"
+          [(ngModel)]="email"
+          name="email"
+          required
+        />
+        <span class="error" *ngIf="errorMessage"> {{ errorMessage }}</span>
+
+        <input
+          type="password"
+          placeholder="Password"
+          [(ngModel)]="password"
+          name="password"
+          required
+        />
+
+        <button type="submit">Sign in</button>
+
+        <p>
+          New to MUZZUF?
+          <a routerLink="/auth/register">Join now</a>
+        </p>
+      </form>
+    </div>
+  </div>
+</div>

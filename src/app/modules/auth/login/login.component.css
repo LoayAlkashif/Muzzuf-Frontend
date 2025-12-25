@@ -1,0 +1,79 @@
+.login-page {
+  height: 100vh;
+  background: url("../../../../../public/Signin.jpg");
+  position: relative;
+  display: flex;
+  align-items: center;
+    justify-content: center;
+}
+
+.login-wrapper {
+  z-index: 2;
+  text-align: center;
+}
+
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.logo {
+  height: 50px;
+  width: 250px;
+  margin-bottom: 20px;
+}
+
+
+.login-card {
+  position: relative;
+  z-index: 2;
+  background: #ffffff;
+  width: 400px;
+  padding: 32px;
+  border-radius: 10px;
+  margin: auto;
+  text-align: center;
+}
+
+.login-card h2 {
+  margin-bottom: 5px;
+}
+
+.login-card p {
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.login-card input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 14px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}
+
+.error{
+    display: flex;
+    text-align: center;
+    color: #dc2626;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.login-card button {
+  width: 100%;
+  padding: 12px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.login-card button:hover {
+  background: var(--primary-dark);
+}

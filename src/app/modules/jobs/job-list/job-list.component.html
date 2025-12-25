@@ -1,0 +1,53 @@
+<!-- HERO (Guest only) -->
+
+<div class="welcome" *ngIf="!isLoggedIn">
+  <h1>Find the Best Jobs</h1>
+  <p>
+    Searching for vacancies & career opportunities?<br />
+    Muzzuf helps you in your job search
+  </p>
+
+  <div class="search-box">
+    <input
+      type="text"
+      placeholder="Search by title or city"
+      [(ngModel)]="searchQuery"
+      (keyup.enter)="searchJobs()"
+    />
+    <button (click)="searchJobs()">Search</button>
+  </div>
+</div>
+
+<!-- JOBS -->
+<div class="container">
+  <div class="job-card" *ngFor="let job of jobs">
+    <h3>{{job.title}}</h3>
+    <span class="company">{{ job.companyName }}</span>
+    <p class="location">{{ job.city }}, {{ job.region }}</p>
+    
+    <span class="level">Seniority: {{ job.level }} <br> <br></span>
+    <p class="desc">
+      {{ job.description | truncate:190 }}
+    </p>
+
+    <div class="meta">
+      <span class="skills"> Skills And Tools: <br>
+
+        {{ job.requiredLanguage.join(', ') }}
+      </span>
+    </div>
+  </div>
+
+  <!-- PAGINATION -->
+  <div class="pagination" >
+    <button (click)="firstPage()" [disabled]="currentPage ===1 ">First</button>
+    <button (click)="prevPage()" [disabled]="currentPage ===1 ">Prev</button>
+
+    <span>
+      Page: {{currentPage}} of {{totalPages}}
+    </span>
+
+    <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+    <button (click)="lastPage()" [disabled]="currentPage === totalPages">Last</button>
+  </div>
+</div>
