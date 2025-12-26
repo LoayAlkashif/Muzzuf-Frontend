@@ -1,1 +1,110 @@
-<p>register works!</p>
+<div class="register-page">
+    <div class="overlay"></div>
+
+    <div class="register-card">
+        <h2>Create your account</h2>
+        <p class="subtitle">Join MUZZUF and start your journey</p>
+
+
+        <form (ngSubmit)="register()">
+            <input placeholder="FullName"
+            [(ngModel)]="model.FullName"
+            name="FullName" />
+
+            <input placeholder="Email" type="email"
+            [(ngModel)] ="model.Email"
+            name="Email"
+            />
+
+            <input placeholder="National ID (optional)"
+                [(ngModel)]="model.nationalId"
+                type="number"
+                name="NationalId" />
+
+            <input placeholder="Password" 
+            type="password" [(ngModel)]="model.Password"
+            name="Password"/>
+
+            <input placeholder="ConfirmPassword"
+            type="password"
+            [(ngModel)]="model.ConfirmPassword"
+            name="ConfirmPassword"/>
+
+
+            <select [(ngModel)]="model.region" name="region" (change)="onRegionChange(model.region)">
+                    <option value="">Select Region</option>
+                    <option *ngFor="let r of regions" [value]="r.name">{{ r.name }}</option>
+            </select>
+
+
+            <select [(ngModel)]="model.city" name="City">
+                    <option value="">Select City</option>
+                    <option *ngFor="let c of cities" [value]="c">{{ c }}</option>
+            </select>
+
+                  <textarea placeholder="Bio (optional)" [(ngModel)]="model.bio" name="bio"></textarea>
+
+            <h4>What are you looking for?</h4>
+            <div class="radio-group">
+                <label>
+                    <input type="radio" name="UserType" value="Employee" [(ngModel)]="model.userType" />
+                    Job
+                </label>
+
+                <label>
+                    <input type="radio" name="UserType" value="Employer" [(ngModel)]="model.userType" />
+                    Hire
+                </label>
+            </div>
+
+
+
+             <!-- Employee -->
+      <div *ngIf="model.userType === 'Employee'">
+        <select [(ngModel)]="model.level" name="level">
+          <option value="">Select Level</option>
+          <option value="Junior">Junior</option>
+          <option value="Mid">Mid</option>
+          <option value="Senior">Senior</option>
+        </select>
+
+        <label class="multi-label">Programming Languages</label>
+
+            <ng-select
+            class="custom-ng-select"
+            [items]="languages"
+            [multiple]="true"
+            [searchable]="true"
+            [addTag]="addTagFn"
+            placeholder="Select or add languages"
+            [(ngModel)]="model.programmingLanguages"
+            name="programmingLanguages">
+            </ng-select>
+
+      </div>
+
+
+
+        <!-- Employer -->
+      <div *ngIf="model.userType === 'Employer'">
+        <input placeholder="Company Name"
+               [(ngModel)]="model.companyName" name="CompanyName" />
+
+        <textarea placeholder="Company Description"
+                  [(ngModel)]="model.companyDescription" name="CompanyDescription"></textarea>
+      </div>
+
+      <span class="error" *ngIf="errorMessage">{{ errorMessage }}</span>
+
+      <button type="submit">Create Account</button>
+
+      <p class="login-link">
+        Already have an account?
+        <a routerLink="/auth/login">Login</a>
+      </p>
+
+        </form>
+
+
+    </div>
+</div>

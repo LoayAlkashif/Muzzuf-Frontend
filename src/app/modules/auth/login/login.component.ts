@@ -37,7 +37,7 @@ export class LoginComponent {
           this.router.navigate(['/jobs']);
         },
         error: (err) => {
-          this.errorMessage = err?.error.message 
+          this.errorMessage = err?.error.message  || "Internal server error"
         }
       });
 
