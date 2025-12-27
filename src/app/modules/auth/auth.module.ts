@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { ConfirmEmailComponent } from './confirm-email/confirm-email.component';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { RegisterComponent } from './register/register.component';
     CommonModule,
     AuthRoutingModule,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ConfirmEmailComponent
   ]
 })
 export class AuthModule { }

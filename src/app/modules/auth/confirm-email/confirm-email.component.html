@@ -1,0 +1,8 @@
+<div class="verify-page">
+  <div class="card">
+    <h2 *ngIf="isSuccess">✅ Success</h2>
+    <h2 *ngIf="!isSuccess">⏳ Please wait</h2>
+
+    <p>{{ message }}</p>
+  </div>
+</div>

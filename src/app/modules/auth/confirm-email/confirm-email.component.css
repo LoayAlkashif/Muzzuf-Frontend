@@ -1,0 +1,14 @@
+.verify-page {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  background: white;
+  padding: 32px;
+  border-radius: 10px;
+  text-align: center;
+  width: 420px;
+}

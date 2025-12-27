@@ -1,0 +1,87 @@
+
+/* container */
+.custom-ng-select {
+  width: 100%;
+  margin-bottom: 16px;
+  
+}
+
+/* main box */
+.custom-ng-select ::ng-deep .ng-select-container {
+  min-height: 48px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  padding: 4px 8px;
+  font-size: 14px;
+}
+
+/* when focused */
+.custom-ng-select.ng-select-focused ::ng-deep .ng-select-container {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.15);
+}
+
+/* selected items container */
+.custom-ng-select ::ng-deep .ng-value-container {
+  padding: 4px;
+  gap: 6px;
+}
+
+/* each selected item (BOX) */
+.custom-ng-select ::ng-deep .ng-value {
+  background: #e5f0ff;
+  color: #1d4ed8;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+}
+
+/* remove (X) button */
+.custom-ng-select ::ng-deep .ng-value-icon {
+  margin-left: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  color: #1d4ed8;
+}
+
+.custom-ng-select ::ng-deep .ng-value-icon:hover {
+  color: #dc2626;
+}
+
+/* dropdown panel */
+.custom-ng-select ::ng-deep .ng-dropdown-panel {
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  overflow: hidden;
+}
+
+/* dropdown option */
+.custom-ng-select ::ng-deep .ng-option {
+  padding: 10px;
+  font-size: 14px;
+}
+
+/* hovered option */
+.custom-ng-select ::ng-deep .ng-option.ng-option-marked {
+  background: #f3f4f6;
+}
+
+/* selected option */
+.custom-ng-select ::ng-deep .ng-option.ng-option-selected {
+  background: #e5f0ff;
+  color: #1d4ed8;
+}
+
+
+.custom-ng-select ::ng-deep .ng-dropdown-panel {
+  background-color: #ffffff; 
+  opacity: 1;              
+  z-index: 9999;            
+}
+
+
+.custom-ng-select ::ng-deep .ng-has-value .ng-placeholder {
+  display: none;
+}

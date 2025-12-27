@@ -1,6 +1,6 @@
 export interface RegisterDto {
   fullName: string;
-  nationalId: string;
+//   nationalId: string;
   email: string;
   password: string;
   confirmPassword: string;
@@ -14,13 +14,13 @@ export interface RegisterDto {
   companyName?: string;
   companyDescription?: string;
 
-  userType: 'Employee' | 'Employer';
+  userType?: 'Employee' | 'Employer';
 }
 
 export const REGIONS = [
   {
     name: 'Egypt',
-    citites: [
+    cities: [
       'Cairo',
       'Alexandria',
       'Giza',
@@ -35,7 +35,7 @@ export const REGIONS = [
   },
   {
     name: 'Saudi Arabia',
-    citites: [
+    cities: [
       'Riyadh',
       'Jeddah',
       'Mecca',
@@ -50,7 +50,7 @@ export const REGIONS = [
   },
   {
     name: 'United States',
-    citites: [
+    cities: [
       'New York',
       'Los Angeles',
       'Chicago',

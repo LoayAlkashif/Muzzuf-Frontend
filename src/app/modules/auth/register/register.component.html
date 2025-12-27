@@ -6,29 +6,33 @@
         <p class="subtitle">Join MUZZUF and start your journey</p>
 
 
-        <form (ngSubmit)="register()">
+        <form  (ngSubmit)="register()">
             <input placeholder="FullName"
-            [(ngModel)]="model.FullName"
+            [(ngModel)]="model.fullName"
             name="FullName" />
 
             <input placeholder="Email" type="email"
-            [(ngModel)] ="model.Email"
+            [(ngModel)] ="model.email"
             name="Email"
             />
-
+<!-- 
             <input placeholder="National ID (optional)"
                 [(ngModel)]="model.nationalId"
-                type="number"
-                name="NationalId" />
+                type="text"
+                name="nationalId"
+                pattern="[0-9]*"
+                inputmode="numeric"
+                
+                /> -->
 
             <input placeholder="Password" 
-            type="password" [(ngModel)]="model.Password"
-            name="Password"/>
+            type="password" [(ngModel)]="model.password"
+            name="password"/>
 
-            <input placeholder="ConfirmPassword"
+            <input placeholder="confirmPassword"
             type="password"
-            [(ngModel)]="model.ConfirmPassword"
-            name="ConfirmPassword"/>
+            [(ngModel)]="model.confirmPassword"
+            name="confirmPassword"/>
 
 
             <select [(ngModel)]="model.region" name="region" (change)="onRegionChange(model.region)">
@@ -70,16 +74,12 @@
 
         <label class="multi-label">Programming Languages</label>
 
-            <ng-select
-            class="custom-ng-select"
+           <app-multi-select
             [items]="languages"
-            [multiple]="true"
-            [searchable]="true"
-            [addTag]="addTagFn"
             placeholder="Select or add languages"
             [(ngModel)]="model.programmingLanguages"
             name="programmingLanguages">
-            </ng-select>
+            </app-multi-select>
 
       </div>
 

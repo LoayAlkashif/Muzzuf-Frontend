@@ -1,0 +1,10 @@
+<ng-select
+  class="custom-ng-select"
+  [items]="availableItems"
+  [multiple]="true"
+  [searchable]="true"
+  [addTag]="addTagFn"
+  [(ngModel)]="value"
+  (ngModelChange)="onValueChange($event)"
+  [placeholder]="placeholder">
+</ng-select>
