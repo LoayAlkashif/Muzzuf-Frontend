@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule } from "@angular/forms";
 import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../../Core/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,8 @@ export class LoginComponent {
     /**
      *
      */
-    constructor(private http: HttpClient, private router:Router) {}
+    constructor(private http: HttpClient, private router:Router,
+       private authService:AuthService) {}
 
     login(){
       const body = {
@@ -33,8 +35,15 @@ export class LoginComponent {
 
       this.http.post<any>(this.apiUrl, body).subscribe({
         next: (res) => {
-          localStorage.setItem('token',res.token);
-          this.router.navigate(['/jobs']);
+          localStorage.setItem('token', res.token);
+
+          const role = this.authService.getRole();
+          if(this.authService.isEmployer()){
+            this.router.navigate(['/employer/jobs']);
+          }
+            else{
+              this.router.navigate(['/jobs']);
+            }
         },
         error: (err) => {
           this.errorMessage = err?.error.message  || "Internal server error"

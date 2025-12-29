@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { NotFoundComponent } from './Shared/Components/not-found/not-found.component';
 
 export const routes: Routes = [
     {path: '', redirectTo: 'jobs', pathMatch: 'full' },
@@ -9,5 +10,6 @@ export const routes: Routes = [
     {
         path: 'auth',
         loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule)
-    }
+    },
+     { path: '**', component: NotFoundComponent }
 ];

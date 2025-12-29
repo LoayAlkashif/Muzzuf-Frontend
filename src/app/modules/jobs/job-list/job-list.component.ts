@@ -5,11 +5,13 @@ import { AuthService } from '../../../Core/services/auth.service';
 import { Job } from '../../../Shared/models/job.model';
 import { JobService } from '../../../Core/services/job.service';
 import { FormsModule } from '@angular/forms';
+import { AuthRoutingModule } from "../../auth/auth-routing.module";
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-job-list',
   standalone: true,
-  imports: [TruncatePipe, CommonModule, FormsModule],
+  imports: [TruncatePipe, CommonModule, FormsModule, AuthRoutingModule, RouterLink],
   templateUrl: './job-list.component.html',
   styleUrl: './job-list.component.css',
 })
@@ -38,7 +40,7 @@ export class JobListComponent implements OnInit {
 
   loadJobs() {
     this.jobService
-    .getActiveJobs(this.currentPage, this.pageSize, this.searchQuery)
+    .getJobs(this.currentPage, this.pageSize, this.searchQuery)
     .subscribe(res => {
       this.jobs = res.data;
       this.currentPage = res.currentPage;

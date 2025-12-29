@@ -1,0 +1,140 @@
+.job-details-page {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+  font-family: Arial, sans-serif;
+}
+
+.job-layout {
+  display: grid;
+  grid-template-columns: 2.5fr 1.5fr;
+  gap: 30px;
+}
+
+/* LEFT CARD */
+.job-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.job-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 25px;
+}
+
+.job-title {
+  margin: 0;
+  font-size: 26px;
+}
+
+.company-name {
+  font-weight: bold;
+  color: #444;
+}
+
+.location {
+  font-size: 14px;
+  color: #777;
+}
+
+/* ACTIONS */
+.actions {
+  display: flex;
+  align-items: center;
+}
+
+/* BUTTONS */
+.btn {
+  padding: 10px 22px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn.primary {
+  background: #0057ff;
+  color: #fff;
+}
+
+.btn.primary:hover {
+  background: #0041c4;
+}
+
+.btn.outline {
+  background: transparent;
+  border: 1px solid #0057ff;
+  color: #0057ff;
+}
+
+.btn.full {
+  width: 100%;
+}
+
+/* SECTIONS */
+section {
+  margin-bottom: 30px;
+}
+
+section h3 {
+  margin-bottom: 10px;
+}
+
+/* SKILLS */
+.skills span {
+  display: inline-block;
+  background: #f0f3ff;
+  color: #003db3;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  margin: 5px 5px 0 0;
+}
+
+/* APPLY PANEL */
+.apply-panel {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  position: sticky;
+  top: 30px;
+  height: fit-content;
+}
+
+.apply-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.apply-header h3 {
+  margin: 0;
+}
+
+.close {
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.question {
+  margin-bottom: 18px;
+}
+
+.question label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.question input {
+  width: 100%;
+  padding: 9px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}

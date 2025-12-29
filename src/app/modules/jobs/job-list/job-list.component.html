@@ -21,7 +21,9 @@
 <!-- JOBS -->
 <div class="container">
   <div class="job-card" *ngFor="let job of jobs">
-    <h3>{{job.title}}</h3>
+    <a [routerLink]="['/jobs', job.id]">
+      <h3>{{job.title}}</h3>
+    </a>
     <span class="company">{{ job.companyName }}</span>
     <p class="location">{{ job.city }}, {{ job.region }}</p>
     

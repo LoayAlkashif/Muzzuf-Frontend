@@ -1,0 +1,77 @@
+<div class="job-details-page" *ngIf="job">
+  <div class="job-layout">
+    <!-- LEFT CARD -->
+    <div class="job-card">
+      <!-- Header -->
+      <div class="job-header">
+        <div>
+          <h1 class="job-title">{{ job.title }}</h1>
+          <p class="company-name">
+            {{ job.companyName || job.employerName }}
+          </p>
+          <p class="location">
+            {{ job.city }}, {{ job.region }} • {{ job.level }}
+          </p>
+        </div>
+
+        <!-- ACTION BUTTON -->
+        <div class="actions">
+          <button class="btn primary" *ngIf="isEmployee" (click)="openApply()">
+            Apply
+          </button>
+
+          <button
+            class="btn primary"
+            *ngIf="isEmployer"
+            (click)="viewApplications()"
+          >
+            View Applications
+          </button>
+        </div>
+      </div>
+
+      <!-- Content -->
+
+      <section>
+        <h3>Skills & Tools</h3>
+        <div class="skills">
+          <span *ngFor="let skill of job.requiredLanguage">
+            {{ skill }}
+          </span>
+        </div>
+      </section>
+
+      
+      <section>
+        <h3>Job Description</h3>
+        <p>{{ job.description }}</p>
+      </section>
+
+      
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="apply-panel" *ngIf="showApplyPanel">
+      <div class="apply-header">
+        <h3>Application Questions</h3>
+        <span class="close" (click)="closeApply()">×</span>
+      </div>
+
+      <div class="question" *ngFor="let q of job.questions || []">
+        <label>{{ q.questionName }}</label>
+
+        <input
+          *ngIf="q.answerType === 'Text'"
+          type="text"
+          placeholder="Write your answer"
+        />
+
+        <button *ngIf="q.answerType === 'Record'" class="btn outline full">
+          🎤 Record Answer
+        </button>
+      </div>
+
+      <button class="btn primary full">Submit Application</button>
+    </div>
+  </div>
+</div>

@@ -16,6 +16,17 @@
   margin-bottom: 30px;
 }
 
+a{
+text-decoration: none;
+color: inherit;
+}
+.job-card h3{
+  cursor: pointer;
+}
+.job-card a:hover h3{
+  color: var(--primary);
+}
+
 .search-box {
   display: flex;
   justify-content: center;

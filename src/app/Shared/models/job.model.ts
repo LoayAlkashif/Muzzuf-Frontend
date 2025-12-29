@@ -9,4 +9,14 @@ export interface Job {
     level: string;
     requiredLanguage: string[];
     isActive: boolean;
+
+    questions: JobQuestion[];
+}
+
+export interface JobQuestion {
+  id: number;
+  questionName: string;
+  answerType: 'Text' | 'Record';
+
+  answer?: string;
 }
