@@ -1,0 +1,38 @@
+<div class="profile-page" *ngIf="user">
+
+  <div class="profile-card">
+
+    <div class="profile-header">
+      <img
+        class="avatar"
+        [src]="user.profileImageUrl || 'assets/default-avatar.png'"
+        alt="Profile" />
+
+      <h2>{{ user.fullName }}</h2>
+      <p class="location">
+        {{ user.city }} {{ user.region ? '• ' + user.region : '' }}
+      </p>
+    </div>
+
+    <div class="profile-body">
+
+      <div class="skills" *ngIf="user.programmingLanguages?.length">
+        <h4>Skills</h4>
+        <div class="tags">
+          <span *ngFor="let skill of user.programmingLanguages">
+            {{ skill }}
+          </span>
+        </div>
+      </div>
+
+      <a *ngIf="user.cvUrl"
+         class="btn outline"
+         [href]="user.cvUrl"
+         target="_blank">
+        📄 View CV
+      </a>
+
+    </div>
+
+  </div>
+</div>

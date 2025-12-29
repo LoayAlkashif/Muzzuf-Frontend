@@ -1,0 +1,70 @@
+<div class="profile-page" *ngIf="user">
+
+  <div class="profile-card">
+
+    <!-- Header -->
+    <div class="profile-header">
+      <img
+        class="avatar"
+        [src]="user.profileImageUrl || 'assets/default-avatar.png'"
+        alt="Profile" />
+
+      <h2>{{ user.fullName }}</h2>
+      <p class="location">
+        {{ user.city }} {{ user.region ? '• ' + user.region : '' }}
+      </p>
+
+      <span class="views">
+        profile views: {{ user.views }} 
+      </span>
+    </div>
+
+    <!-- Body -->
+    <div class="profile-body">
+
+      <div class="info">
+        <strong>Email:</strong> {{ user.email }}
+      </div>
+
+      <!-- Skills (Employee Only) -->
+<div class="skills"
+     *ngIf="isEmployee && user.programmingLanguages?.length">
+  <h4>Skills</h4>
+  <div class="tags">
+    <span *ngFor="let skill of user.programmingLanguages">
+      {{ skill }}
+    </span>
+  </div>
+</div>
+
+
+      <a *ngIf="user.cvUrl"
+         class="btn outline"
+         [href]="user.cvUrl"
+         target="_blank">
+        📄 View CV
+      </a>
+
+     <!-- Employer Company -->
+<div class="company"
+     *ngIf="isEmployer && user.comapnyName">
+  
+  <h4>Company</h4>
+
+  <div class="company-card">
+    <img
+      *ngIf="user.companyLogoUrl"
+      [src]="user.companyLogoUrl"
+      class="company-logo" />
+
+    <div>
+      <p class="company-name">{{ user.comapnyName }}</p>
+      <p class="company-desc">{{ user.companyDescription }}</p>
+    </div>
+  </div>
+</div>
+
+    </div>
+
+  </div>
+</div>

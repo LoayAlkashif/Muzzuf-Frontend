@@ -1,11 +1,40 @@
 <nav class="navbar">
-   <a href="/">
-    <img [src]="MuzzufLogo" alt="">
-   </a>
+  <!-- Left: Logo -->
+  <div class="nav-left">
+    <a routerLink="/">
+      <img [src]="MuzzufLogo" alt="Muzzuf">
+    </a>
+  </div>
 
-  <div class="links">
-    <a routerLink="/jobs"> Jobs </a>
-    <a routerLink="/auth/login">Login</a>
-    <a routerLink="/auth/register">Register</a>
+  <!-- Center: Search -->
+  <div class="nav-center" *ngIf="isLoggedIn">
+    <input
+      type="text"
+      placeholder="Search users..."
+      [(ngModel)]="searchText"
+      (ngModelChange)="onSearchChange($event)"
+    />
+
+    <!-- Dropdown -->
+    <div class="search-dropdown" *ngIf="showDropdown">
+      <div
+        class="search-item"
+        *ngFor="let user of users"
+        (click)="openProfile(user.id)"
+      >
+        <img [src]="user.profileImageUrl || 'assets/avatar.png'" />
+        <div>
+          <strong>{{ user.fullName }}</strong>
+          <p>{{ user.bio  | truncate : 20}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right: Links -->
+  <div class="nav-right">
+    <a routerLink="/jobs">Jobs</a>
+    <a *ngIf="!isLoggedIn" routerLink="/auth/login">Login</a>
+    <a *ngIf="!isLoggedIn" routerLink="/auth/register">Register</a>
   </div>
 </nav>

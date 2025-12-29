@@ -1,0 +1,112 @@
+.profile-page {
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.profile-card {
+  width: 100%;
+  max-width: 480px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,.08);
+  overflow: hidden;
+}
+
+/* HEADER */
+.profile-header {
+  text-align: center;
+  padding: 30px 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.avatar {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 12px;
+}
+
+.location {
+  color: #666;
+  font-size: 14px;
+}
+
+.views {
+  display: block;
+  margin-top: 8px;
+  font-size: 13px;
+  color: #999;
+}
+
+/* BODY */
+.profile-body {
+  padding: 20px;
+}
+
+.info {
+  margin-bottom: 15px;
+}
+
+.skills h4,
+.company h4 {
+  margin-bottom: 8px;
+}
+
+.tags span {
+  display: inline-block;
+  background: #f0f4ff;
+  color: #0055d9;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  margin: 5px 5px 0 0;
+}
+
+/* COMPANY */
+.company {
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+}
+
+.company-name {
+  font-weight: bold;
+}
+
+.company-desc {
+  font-size: 14px;
+  color: #555;
+}
+
+/* BUTTON */
+.btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn.outline {
+  border: 1px solid #0055d9;
+  color: #0055d9;
+}
+
+
+
+.company-card {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.company-logo {
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  object-fit: cover;
+}
