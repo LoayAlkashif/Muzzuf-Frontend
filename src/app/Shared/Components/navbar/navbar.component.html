@@ -33,7 +33,29 @@
 
   <!-- Right: Links -->
   <div class="nav-right">
-    <a routerLink="/jobs">Jobs</a>
+      <a routerLink="/jobs">Jobs</a>
+
+    <!-- ME -->
+    <div class="me-wrapper" *ngIf="isLoggedIn" (click)="toggleMeMenu()">
+      <img
+        class="me-avatar"
+        [src]="user?.profileImageUrl || 'assets/avatar.png'" />
+      <span>Me ▾</span>
+
+      <div class="me-dropdown" *ngIf="showMeMenu">
+
+        <button (click)="goToMyProfile()">View Profile</button>
+        <button (click)="goToEditProfile()">Edit Profile</button>
+        <button *ngIf="isEmployee"
+                (click)="goToApplications()">
+          Applications
+        </button>
+
+        <hr />
+
+        <button class="logout" (click)="logOut()">Logout</button>
+      </div>
+    </div>
     <a *ngIf="!isLoggedIn" routerLink="/auth/login">Login</a>
     <a *ngIf="!isLoggedIn" routerLink="/auth/register">Register</a>
   </div>

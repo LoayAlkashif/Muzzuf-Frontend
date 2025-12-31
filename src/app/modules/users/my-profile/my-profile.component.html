@@ -1,70 +1,113 @@
 <div class="profile-page" *ngIf="user">
 
+  <!-- COVER -->
+  <div class="cover"></div>
+
+  <!-- MAIN CARD -->
   <div class="profile-card">
 
-    <!-- Header -->
+    <!-- HEADER -->
     <div class="profile-header">
-      <img
-        class="avatar"
-        [src]="user.profileImageUrl || 'assets/default-avatar.png'"
-        alt="Profile" />
 
-      <h2>{{ user.fullName }}</h2>
-      <p class="location">
-        {{ user.city }} {{ user.region ? '• ' + user.region : '' }}
-      </p>
+      <div class="avatar-wrapper" (click)="fileInput.click()">
+        <img
+          class="avatar"
+          [src]="user.profileImageUrl || 'assets/default-avatar.png'"
+          alt="Profile" />
 
-      <span class="views">
-        profile views: {{ user.views }} 
-      </span>
-    </div>
-
-    <!-- Body -->
-    <div class="profile-body">
-
-      <div class="info">
-        <strong>Email:</strong> {{ user.email }}
+        <div class="avatar-overlay">
+          📷 Change photo
+        </div>
       </div>
 
-      <!-- Skills (Employee Only) -->
-<div class="skills"
-     *ngIf="isEmployee && user.programmingLanguages?.length">
-  <h4>Skills</h4>
-  <div class="tags">
-    <span *ngFor="let skill of user.programmingLanguages">
-      {{ skill }}
-    </span>
-  </div>
-</div>
+      <input
+        type="file"
+        #fileInput
+        hidden
+        accept="image/*"
+        (change)="onImageSelected($event)" />
+
+      <div class="header-info">
+        <h2>{{ user.fullName }}</h2>
+        <p class="location">
+          {{ user.city }} {{ user.region ? '• ' + user.region : '' }}
+        </p>
+        <span class="views">
+          Views: {{ user.views }} profile views
+        </span>
+      </div>
+    </div>
+
+    <!-- CROP MODAL -->
+    <div class="crop-modal" *ngIf="showCropper">
+      <div class="crop-card">
+
+        <image-cropper
+          [imageChangedEvent]="imageChangedEvent"
+          [maintainAspectRatio]="true"
+          [aspectRatio]="1"
+          [roundCropper]="true"
+          format="png"
+          (imageCropped)="imageCropped($event)">
+        </image-cropper>
+
+        <div class="crop-actions">
+          <button class="btn outline" (click)="cancelCrop()">Cancel</button>
+          <button class="btn primary" (click)="saveCroppedImage()">Save</button>
+        </div>
+
+      </div>
+    </div>
 
 
-      <a *ngIf="user.cvUrl"
-         class="btn outline"
+    <!-- ABOUT -->
+    <section class="section" *ngIf="user.bio">
+      <h3>About</h3>
+      <p class="bio">{{ user.bio }}</p>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section">
+      <h3>Contact Info</h3>
+      <p><strong>Email:</strong> {{ user.email }}</p>
+    </section>
+
+  <!-- SKILLS -->
+    <section class="section" *ngIf="user.programmingLanguages?.length">
+      <h3>Skills</h3>
+      <div class="tags">
+        <span *ngFor="let skill of user.programmingLanguages">
+          {{ skill }}
+        </span>
+      </div>
+    </section>
+
+    <!-- CV -->
+    <section class="section" *ngIf="user.cvUrl">
+      <a class="btn primary"
          [href]="user.cvUrl"
          target="_blank">
         📄 View CV
       </a>
+    </section>
 
-     <!-- Employer Company -->
-<div class="company"
-     *ngIf="isEmployer && user.comapnyName">
-  
-  <h4>Company</h4>
+    <!-- COMPANY (Employer) -->
+    <section class="section"
+             *ngIf="isEmployer && user.comapnyName">
+      <h3>Company</h3>
 
-  <div class="company-card">
-    <img
-      *ngIf="user.companyLogoUrl"
-      [src]="user.companyLogoUrl"
-      class="company-logo" />
+      <div class="company-card">
+        <img
+          *ngIf="user.companyLogoUrl"
+          [src]="user.companyLogoUrl"
+          class="company-logo" />
 
-    <div>
-      <p class="company-name">{{ user.comapnyName }}</p>
-      <p class="company-desc">{{ user.companyDescription }}</p>
-    </div>
-  </div>
-</div>
-
-    </div>
+        <div>
+          <p class="company-name">{{ user.comapnyName }}</p>
+          <p class="company-desc">{{ user.companyDescription }}</p>
+        </div>
+      </div>
+    </section>
 
   </div>
 </div>

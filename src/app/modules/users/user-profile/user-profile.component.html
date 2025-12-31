@@ -1,38 +1,68 @@
 <div class="profile-page" *ngIf="user">
 
+  <!-- COVER -->
+  <div class="cover"></div>
+
+  <!-- CARD -->
   <div class="profile-card">
 
+    <!-- HEADER -->
     <div class="profile-header">
       <img
         class="avatar"
         [src]="user.profileImageUrl || 'assets/default-avatar.png'"
         alt="Profile" />
 
-      <h2>{{ user.fullName }}</h2>
-      <p class="location">
-        {{ user.city }} {{ user.region ? '• ' + user.region : '' }}
-      </p>
+      <div class="header-info">
+        <h2>{{ user.fullName }}</h2>
+
+        <p class="location">
+          {{ user.city }} {{ user.region ? '• ' + user.region : '' }}
+        </p>
+      </div>
     </div>
 
-    <div class="profile-body">
+    <!-- ABOUT -->
+    <section class="section" *ngIf="user.bio">
+      <h3>About</h3>
+      <p class="bio">{{ user.bio }}</p>
+    </section>
 
-      <div class="skills" *ngIf="user.programmingLanguages?.length">
-        <h4>Skills</h4>
-        <div class="tags">
-          <span *ngFor="let skill of user.programmingLanguages">
-            {{ skill }}
-          </span>
-        </div>
+    <!-- SKILLS -->
+    <section class="section" *ngIf="user.programmingLanguages?.length">
+      <h3>Skills</h3>
+      <div class="tags">
+        <span *ngFor="let skill of user.programmingLanguages">
+          {{ skill }}
+        </span>
       </div>
+    </section>
 
-      <a *ngIf="user.cvUrl"
-         class="btn outline"
+    <!-- CV -->
+    <section class="section" *ngIf="user.cvUrl">
+      <a class="btn primary"
          [href]="user.cvUrl"
          target="_blank">
         📄 View CV
       </a>
+    </section>
 
-    </div>
+    <!-- COMPANY -->
+    <section class="section" *ngIf="user.comapnyName">
+      <h3>Company</h3>
+
+      <div class="company-card">
+        <img
+          *ngIf="user.companyLogoUrl"
+          [src]="user.companyLogoUrl"
+          class="company-logo" />
+
+        <div>
+          <p class="company-name">{{ user.comapnyName }}</p>
+          <p class="company-desc">{{ user.companyDescription }}</p>
+        </div>
+      </div>
+    </section>
 
   </div>
 </div>

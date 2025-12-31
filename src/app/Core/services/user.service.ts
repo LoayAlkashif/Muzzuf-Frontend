@@ -23,4 +23,12 @@ export class UserService {
     return this.http.get<{ userProfile: UserProfile }>(
       `${this.baseUrl}/profile`)
   }
+
+  uploadProfileImage(formData: FormData){
+    return this.http.post<{profileImage: string}>(
+      `${this.baseUrl}/profile-image`,formData
+    )
+  }
+
+  
 }
