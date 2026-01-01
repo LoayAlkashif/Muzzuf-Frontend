@@ -1,0 +1,90 @@
+<div class="update-layout" *ngIf="user">
+  <!-- LEFT -->
+  <div class="sidebar">
+    <div
+      class="menu-item"
+      [class.active]="activeTab === 'general'"
+      (click)="activeTab = 'general'"
+    >
+      General Info
+    </div>
+
+    <div
+    *ngIf="isEmployee"
+      class="menu-item"
+      [class.active]="activeTab === 'skills'"
+      (click)="activeTab = 'skills'"
+    >
+      Skills
+    </div>
+
+    <div
+    *ngIf="isEmployee"
+      class="menu-item"
+      [class.active]="activeTab === 'cv'"
+      (click)="activeTab = 'cv'"
+    >
+      Upload CV
+    </div>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="content">
+    <!-- GENERAL INFO -->
+    <div *ngIf="activeTab === 'general'">
+      <h2>General Information</h2>
+
+      <label>Full Name</label>
+      <input [(ngModel)]="user.fullName" />
+
+      <label>About</label>
+      <textarea rows="4" [(ngModel)]="user.bio"></textarea>
+
+      <label>Region</label>
+      <select [(ngModel)]="user.region" (change)="onRegionChange()">
+        <option *ngFor="let r of regions" [value]="r.name">
+          {{ r.name }}
+        </option>
+      </select>
+
+      <label>City</label>
+      <select [(ngModel)]="user.city" [disabled]="!cities.length">
+        <option value="">Select City</option>
+        <option *ngFor="let c of cities" [value]="c">
+          {{ c }}
+        </option>
+      </select>
+
+      <button class="btn primary" (click)="saveGeneralInfo()">
+        Save Changes
+      </button>
+    </div>
+
+    <!-- SKILLS -->
+    <div *ngIf="activeTab === 'skills'">
+      <h2>Skills</h2>
+
+      <app-multi-select
+        [items]="allSkills"
+        [(ngModel)]="selectedSkills"
+        placeholder="Select skills"
+      >
+      </app-multi-select>
+
+      <button class="btn primary" (click)="saveSkills()">Save Skills</button>
+    </div>
+
+    <!-- CV -->
+    <div *ngIf="activeTab === 'cv'">
+      <h2>Upload CV</h2>
+
+      <a *ngIf="user.cvUrl" [href]="user.cvUrl" target="_blank">
+        📄 View current CV
+      </a>
+
+      <input type="file" (change)="onCvSelected($event)" />
+
+      <button class="btn primary" (click)="uploadCv()">Upload New CV</button>
+    </div>
+  </div>
+</div>

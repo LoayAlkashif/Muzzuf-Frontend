@@ -26,6 +26,7 @@ export class NavbarComponent implements OnInit {
 
   showMeMenu = false;
   isEmployee = false;
+  isEmployer = false;
   user: UserProfile | null = null;
 
   private searchSubject = new Subject<string>();
@@ -44,6 +45,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.isLoggedIn = this.authService.isLoggedIn();
     this.isEmployee = this.authService.isEmployee();
+    this.isEmployer = this.authService.isEmployer();
 
     this.authService.user$.subscribe(user => {
       this.user = user;
@@ -99,10 +101,15 @@ export class NavbarComponent implements OnInit {
 
   goToEditProfile(){
     this.showMeMenu = false;
-    this.router.navigate(['/user/profile'])
+    this.router.navigate(['/user/profile/edit'])
   }
 
   goToApplications() {
+    this.showMeMenu = false;
+    this.router.navigate(['/application/my-applications'])
+  }
+
+  goToEditCompanyProfile() {
     this.showMeMenu = false;
     this.router.navigate(['/user/profile'])
   }

@@ -39,7 +39,7 @@ export class LoginComponent {
 
           const role = this.authService.getRole();
           if(this.authService.isEmployer()){
-            this.router.navigate(['/employer/jobs']);
+            this.router.navigate(['/jobs/employer']);
           }
             else{
               this.router.navigate(['/jobs']);

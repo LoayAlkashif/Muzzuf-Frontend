@@ -1,0 +1,99 @@
+<div class="applications-container">
+
+  <!-- LEFT -->
+  <div class="applications-list">
+    <h3>My Applications</h3>
+
+   
+
+    <div
+      class="app-card"
+      *ngFor="let app of applications"
+      [class.active]="selectedApplication?.id === app.id"
+      (click)="selectApplication(app)"
+    >
+
+     <img
+            class="company-logo"
+            [src]="app.companyLogo || '/DCompany.jpg'"
+            alt="Company Logo"
+        />
+      <h4>{{ app.jobTitle }}</h4>
+      <p class="company">
+        {{ app.companyName }} • {{ app.jobCity }}, {{app.jobRegion}}
+      </p>
+
+      <span class="status" [class]="app.status.toLowerCase()">
+        {{ app.status }}
+      </span>
+
+      <small>
+        {{ app.appliedAt | date:'mediumDate' }}
+      </small>
+    </div>
+  </div>
+
+
+
+
+  <!-- RIGHT -->
+  <div class="application-details">
+
+    <ng-container *ngIf="selectedApplication; else emptyState">
+
+      <h2>{{ selectedApplication.jobTitle }}</h2>
+      <p class="company">
+        {{ selectedApplication.companyName }}
+      </p>
+
+      <span class="status big" [class]="selectedApplication.status.toLowerCase()">
+        {{ selectedApplication.status }}
+      </span>
+
+      <hr />
+
+      <h3>Questions & Answers</h3>
+
+      <div class="answer-box"
+           *ngFor="let ans of selectedApplication.answers">
+
+        <p class="question">
+          {{ ans.questionName }}
+        </p>
+
+        <p class="answer" *ngIf="ans.textAnswer">
+          {{ ans.textAnswer }}
+        </p>
+
+        <audio *ngIf="ans.recordUrl" controls>
+          <source [src]="ans.recordUrl" />
+        </audio>
+
+      </div>
+
+    </ng-container>
+
+    <ng-template #emptyState>
+      <p class="empty">
+        Select an application to view details
+      </p>
+    </ng-template>
+
+  </div>
+
+</div>
+
+
+  <div class="pagination">
+  <button (click)="prev()" [disabled]="currentPage === 1">
+    Prev
+  </button>
+
+  <span>
+    Page {{ currentPage }} of {{ totalPages }}
+  </span>
+
+  <button (click)="next()" [disabled]="currentPage === totalPages">
+    Next
+  </button>
+</div>

@@ -15,5 +15,9 @@ export const routes: Routes = [
         path: 'user',
         loadChildren: () => import('./modules/users/users.module').then(m => m.UsersModule)
     },
+    {
+        path: 'application',
+        loadChildren: () => import('./modules/applications/applications.module').then(m => m.ApplicationsModule)
+    },
      { path: '**', component: NotFoundComponent }
 ];

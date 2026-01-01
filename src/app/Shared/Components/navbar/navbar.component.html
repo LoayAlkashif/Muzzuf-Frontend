@@ -1,7 +1,7 @@
 <nav class="navbar">
   <!-- Left: Logo -->
   <div class="nav-left">
-    <a routerLink="/">
+    <a [routerLink]="isEmployer ? '/jobs/employer' : '/'">
       <img [src]="MuzzufLogo" alt="Muzzuf">
     </a>
   </div>
@@ -22,7 +22,7 @@
         *ngFor="let user of users"
         (click)="openProfile(user.id)"
       >
-        <img [src]="user.profileImageUrl || 'assets/avatar.png'" />
+        <img [src]="user.profileImageUrl || '/DProfile.png'" />
         <div>
           <strong>{{ user.fullName }}</strong>
           <p>{{ user.bio  | truncate : 20}}</p>
@@ -33,13 +33,17 @@
 
   <!-- Right: Links -->
   <div class="nav-right">
-      <a routerLink="/jobs">Jobs</a>
+      <a [routerLink]="isEmployer ? '/jobs/employer' : '/'">Jobs</a>
+
+   <a *ngIf="isLoggedIn && isEmployer"  routerLink="jobs/addJob" >
+     Add Job
+  </a>
 
     <!-- ME -->
     <div class="me-wrapper" *ngIf="isLoggedIn" (click)="toggleMeMenu()">
       <img
         class="me-avatar"
-        [src]="user?.profileImageUrl || 'assets/avatar.png'" />
+        [src]="user?.profileImageUrl || '/DProfile.png'" />
       <span>Me ▾</span>
 
       <div class="me-dropdown" *ngIf="showMeMenu">
@@ -49,6 +53,11 @@
         <button *ngIf="isEmployee"
                 (click)="goToApplications()">
           Applications
+        </button>
+
+        <button *ngIf="isEmployer"
+                (click)="goToEditCompanyProfile()">
+          Edit Company Profile
         </button>
 
         <hr />

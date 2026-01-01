@@ -2,6 +2,7 @@ export interface Job {
     id: string;
     employerName: string;
     companyName: string;
+    companyLogo?:string,
     title: string;
     description: string;
     region: string;
@@ -9,6 +10,8 @@ export interface Job {
     level: string;
     requiredLanguage: string[];
     isActive: boolean;
+
+    applicationStatus?: 'Pending' | 'Accepted' | 'Rejected' | null;
 
     questions: JobQuestion[];
 }

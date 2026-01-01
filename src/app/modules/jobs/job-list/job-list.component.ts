@@ -21,6 +21,7 @@ export class JobListComponent implements OnInit {
   pageSize = 10;
   totalPages = 1;
   totalCount = 0;
+  isEmployer = false;
 
 
   searchQuery = '';
@@ -39,6 +40,7 @@ export class JobListComponent implements OnInit {
   }
 
   loadJobs() {
+    this.isEmployer = this.authService.isEmployer();
     this.jobService
     .getJobs(this.currentPage, this.pageSize, this.searchQuery)
     .subscribe(res => {
@@ -78,4 +80,7 @@ export class JobListComponent implements OnInit {
     this.currentPage = 1;
     this.loadJobs();
   }
+
+
+  
 }

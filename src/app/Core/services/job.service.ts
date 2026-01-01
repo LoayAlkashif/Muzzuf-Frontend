@@ -30,5 +30,13 @@ export class JobService {
     getJobById(id:string){
         return this.http.get<any>(`${this.baseUrl}/${id}`);
     }
+
+
+    applyJob(formData: FormData) {
+    return this.http.post(
+    'http://localhost:5016/api/Application/apply-job',
+    formData
+  );
+}
    
 }

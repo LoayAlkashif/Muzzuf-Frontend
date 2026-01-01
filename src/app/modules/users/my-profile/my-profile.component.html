@@ -12,7 +12,7 @@
       <div class="avatar-wrapper" (click)="fileInput.click()">
         <img
           class="avatar"
-          [src]="user.profileImageUrl || 'assets/default-avatar.png'"
+          [src]="user.profileImageUrl || 'DProfile.png'"
           alt="Profile" />
 
         <div class="avatar-overlay">
@@ -98,8 +98,7 @@
 
       <div class="company-card">
         <img
-          *ngIf="user.companyLogoUrl"
-          [src]="user.companyLogoUrl"
+          [src]="user.companyLogoUrl || 'DCompany.jpg'"
           class="company-logo" />
 
         <div>

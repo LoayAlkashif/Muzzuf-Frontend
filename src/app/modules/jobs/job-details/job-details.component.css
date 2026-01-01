@@ -14,8 +14,8 @@
 /* LEFT CARD */
 .job-card {
   background: #fff;
-  border-radius: 10px;
-  padding: 25px;
+  border-radius: 12px;
+  padding: 28px;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
 }
 
@@ -26,6 +26,10 @@
   margin-bottom: 25px;
 }
 
+.job-info {
+  max-width: 70%;
+}
+
 .job-title {
   margin: 0;
   font-size: 26px;
@@ -34,17 +38,39 @@
 .company-name {
   font-weight: bold;
   color: #444;
+  margin-top: 6px;
 }
 
 .location {
   font-size: 14px;
   color: #777;
+  margin: 4px 0;
+}
+
+.level {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 14px;
+  color: #333;
+}
+
+/* LOGO */
+.logo-wrapper {
+  flex-shrink: 0;
+}
+
+.company-logo {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  border-radius: 10px;
+  border: 1px solid #eee;
+  background: #fafafa;
 }
 
 /* ACTIONS */
 .actions {
-  display: flex;
-  align-items: center;
+  margin-top: 16px;
 }
 
 /* BUTTONS */
@@ -57,22 +83,44 @@
 }
 
 .btn.primary {
-  background: #0057ff;
+  background: #2563eb;
   color: #fff;
 }
 
 .btn.primary:hover {
-  background: #0041c4;
+  background: #1e4fd8;
 }
 
 .btn.outline {
   background: transparent;
-  border: 1px solid #0057ff;
-  color: #0057ff;
+  border: 1px solid #2563eb;
+  color: #2563eb;
 }
 
 .btn.full {
   width: 100%;
+}
+
+/* STATUS COLORS */
+.btn.primary.pending {
+  background: #facc15;
+  color: #000;
+  cursor: not-allowed;
+}
+
+.btn.primary.accepted {
+  background: #22c55e;
+  cursor: not-allowed;
+}
+
+.btn.primary.rejected {
+  background: #ef4444;
+  cursor: not-allowed;
+}
+
+button:disabled {
+  pointer-events: none;
+  opacity: 0.95;
 }
 
 /* SECTIONS */
@@ -98,12 +146,11 @@ section h3 {
 /* APPLY PANEL */
 .apply-panel {
   background: #ffffff;
-  border-radius: 10px;
+  border-radius: 12px;
   padding: 25px;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
   position: sticky;
   top: 30px;
-  height: fit-content;
 }
 
 .apply-header {
@@ -111,10 +158,6 @@ section h3 {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
-}
-
-.apply-header h3 {
-  margin: 0;
 }
 
 .close {
@@ -137,4 +180,73 @@ section h3 {
   padding: 9px;
   border-radius: 6px;
   border: 1px solid #ccc;
+}
+
+
+/* TEXT ANSWER */
+.text-answer-box textarea {
+  width: 100%;
+  min-height: 90px;
+  resize: vertical;
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.text-answer-box textarea:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 1px #2563eb;
+}
+
+.char-count {
+  text-align: right;
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 4px;
+}
+
+
+.record-muzzuf {
+  margin-top: 10px;
+}
+
+.record-btn {
+  padding: 10px 16px;
+  border-radius: 6px;
+  border: 1px solid #0a66c2;
+  background: white;
+  color: #0a66c2;
+  cursor: pointer;
+}
+
+.recording-box {
+  margin-top: 10px;
+}
+
+.progress {
+  height: 6px;
+  background: #eee;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+
+.progress-bar {
+  height: 100%;
+  background: #0a66c2;
+  transition: width 0.3s;
+}
+
+.time {
+  font-size: 12px;
+  color: #555;
+  margin-bottom: 6px;
+}
+
+.audio-preview {
+  margin-top: 10px;
 }

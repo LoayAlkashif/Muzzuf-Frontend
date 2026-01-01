@@ -10,7 +10,7 @@
     <div class="profile-header">
       <img
         class="avatar"
-        [src]="user.profileImageUrl || 'assets/default-avatar.png'"
+        [src]="user.profileImageUrl || '/DProfile.png'"
         alt="Profile" />
 
       <div class="header-info">
@@ -53,8 +53,7 @@
 
       <div class="company-card">
         <img
-          *ngIf="user.companyLogoUrl"
-          [src]="user.companyLogoUrl"
+          [src]="user.companyLogoUrl || 'DCompany.jpg'"
           class="company-logo" />
 
         <div>

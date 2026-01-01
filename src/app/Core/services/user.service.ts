@@ -30,5 +30,20 @@ export class UserService {
     )
   }
 
+  updateUser(id: string, body: any) {
+  return this.http.put(
+    `${this.baseUrl}/update-user/${id}`,
+    body
+  );
+}
+
+uploadCv(formData: FormData) {
+  return this.http.post(
+    `${this.baseUrl}/cv`,
+    formData
+  );
+}
+
+
   
 }

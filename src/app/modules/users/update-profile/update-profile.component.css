@@ -1,0 +1,154 @@
+/* ========== Layout ========== */
+.update-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 24px;
+  padding: 20px;
+  min-height: 70vh;
+  background: #f5f7fb;
+  border-radius: 14px;
+}
+
+/* ========== Sidebar ========== */
+.sidebar {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+
+.menu-item {
+  padding: 14px 16px;
+  margin-bottom: 8px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  color: #334155;
+  transition: all 0.25s ease;
+}
+
+.menu-item:hover {
+  background: #eef2ff;
+  color: #2563eb;
+}
+
+.menu-item.active {
+  background: #2563eb;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* ========== Content ========== */
+.content {
+  background: #ffffff;
+  padding: 28px;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* ========== Headings ========== */
+.content h2 {
+  margin-bottom: 18px;
+  font-size: 22px;
+  color: #1e293b;
+}
+
+/* ========== Form ========== */
+label {
+  display: block;
+  margin-top: 18px;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #475569;
+}
+
+select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  margin-bottom: 12px;
+}
+
+
+input,
+textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  background: #ffffff;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* ========== Buttons ========== */
+.btn {
+  margin-top: 22px;
+  padding: 12px 28px;
+  border-radius: 999px;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+/* Primary Button */
+.btn.primary {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.btn.primary:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+}
+
+.btn.primary:active {
+  transform: scale(0.97);
+}
+
+/* ========== CV Section ========== */
+a {
+  display: inline-block;
+  margin-bottom: 14px;
+  color: #2563eb;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ========== File Input ========== */
+input[type="file"] {
+  margin-top: 14px;
+  cursor: pointer;
+}
+
+/* ========== Responsive ========== */
+@media (max-width: 768px) {
+  .update-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    display: flex;
+    gap: 10px;
+  }
+
+  .menu-item {
+    flex: 1;
+    text-align: center;
+  }
+}

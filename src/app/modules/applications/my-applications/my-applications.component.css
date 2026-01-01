@@ -1,0 +1,131 @@
+.applications-container {
+  display: flex;
+  height: calc(100vh - 80px);
+  background: #f3f6f9;
+}
+
+/* LEFT */
+.applications-list {
+  width: 35%;
+  background: #fff;
+  border-right: 1px solid #e0e0e0;
+  padding: 16px;
+  overflow-y: auto;
+}
+
+.app-card {
+  border: 1px solid #e6e6e6;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: 0.2s;
+
+ position: relative; /* ✅ مهم */
+  padding-right: 70px;
+}
+
+.app-card:hover {
+  background: #f9fafb;
+}
+
+.app-card.active {
+  border-color: #0a66c2;
+  background: #eef3f8;
+}
+
+.company {
+  color: #666;
+  font-size: 14px;
+}
+.company-logo {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  object-fit: cover;
+  background: #fff;
+
+  position: absolute; 
+  top: 12px;            
+  right: 12px; 
+}
+
+.status {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  margin-top: 6px;
+}
+
+.status.pending {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.status.accepted {
+  background: #d4edda;
+  color: #155724;
+}
+
+.status.rejected {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+/* RIGHT */
+.application-details {
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;
+}
+
+.status.big {
+  font-size: 14px;
+  margin: 10px 0;
+}
+
+.answer-box {
+  border: 1px solid #e6e6e6;
+  border-radius: 6px;
+  padding: 12px;
+  margin-bottom: 12px;
+  background: #fff;
+}
+
+.question {
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.answer {
+  color: #333;
+}
+
+.empty {
+  color: #888;
+  font-size: 16px;
+  margin-top: 50px;
+  text-align: center;
+}
+
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.pagination button {
+  padding: 6px 14px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: white;
+  cursor: pointer;
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
