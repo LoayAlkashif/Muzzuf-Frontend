@@ -1,0 +1,116 @@
+<div class="applications-container">
+
+  <!-- LEFT -->
+  <div class="applications-list">
+    <h3>Applications of: {{jobTitle}}</h3>
+
+    <div
+      class="app-card"
+      *ngFor="let app of applications"
+      [class.active]="selectedApplication?.id === app.id"
+      (click)="selectApplication(app)"
+    >
+
+      <img
+        class="company-logo"
+        [src]="app.profileImageUrl || '/DProfile.png'"
+        alt="Profile"
+      />
+
+      <h4>{{ app.employeeName }}</h4>
+
+      <p class="company">
+        Applied at {{ app.appliedAt | date:'mediumDate' }}
+      </p>
+
+      <span class="status" [class]="app.status.toLowerCase()">
+        {{ app.status }}
+      </span>
+
+    </div>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="application-details">
+
+    <ng-container *ngIf="selectedApplication; else emptyState">
+
+      <h2>{{ selectedApplication.employeeName }}</h2>
+
+      <a
+        *ngIf="selectedApplication.cvUrl"
+        [href]="selectedApplication.cvUrl"
+        target="_blank"
+        class="cv-link"
+      >
+        📄 Download CV
+      </a>
+
+      <span
+        class="status big"
+        [class]="selectedApplication.status.toLowerCase()"
+      >
+        {{ selectedApplication.status }}
+      </span>
+
+      <hr />
+
+      <h3>Questions & Answers</h3>
+
+      <div
+        class="answer-box"
+        *ngFor="let ans of selectedApplication.answers"
+      >
+
+        <p class="question">
+          {{ ans.questionName }}
+        </p>
+
+        <p class="answer" *ngIf="ans.answerType === 'Text'">
+          {{ ans.textAnswer }}
+        </p>
+
+        <audio *ngIf="ans.answerType === 'Record'" controls>
+          <source [src]="ans.recordUrl" />
+        </audio>
+
+      </div>
+
+
+      
+<!-- ACTIONS AFTER QUESTIONS -->
+<div
+  class="decision-actions"
+  *ngIf="selectedApplication.status === 'Pending'"
+>
+  <button
+    class="accept-btn"
+    (click)="acceptApp(selectedApplication.id)">
+    ✅ Accept Application
+  </button>
+
+  <button
+    class="reject-btn"
+    (click)="rejectApp(selectedApplication.id)">
+    ❌ Reject Application
+  </button>
+</div>
+
+    </ng-container>
+
+    <ng-template #emptyState>
+      <p class="empty">
+        Select an application to view details
+      </p>
+    </ng-template>
+
+  </div>
+
+</div>
+
+<!-- Pagination -->
+<div class="pagination">
+  <button (click)="prevPage()" [disabled]="page === 1">Prev</button>
+  <span>Page {{ page }} of {{ totalPages }}</span>
+  <button (click)="nextPage()" [disabled]="page === totalPages">Next</button>
+</div>

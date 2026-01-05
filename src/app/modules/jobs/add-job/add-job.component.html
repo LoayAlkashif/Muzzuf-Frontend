@@ -1,0 +1,74 @@
+<div class="add-job-container">
+  <h2>Create New Job</h2>
+
+  <label>Job Title</label>
+  <input type="text" [(ngModel)]="job.title" />
+
+  <label>Description</label>
+  <textarea rows="5" [(ngModel)]="job.description"></textarea>
+
+  <div class="row">
+    <div>
+      <label>Region</label>
+      <select [(ngModel)]="job.region" (change)="onRegionChange()">
+        <option value="">Select Region</option>
+        <option *ngFor="let r of regions" [value]="r.name">
+          {{ r.name }}
+        </option>
+      </select>
+    </div>
+
+    <div>
+      <label>City</label>
+      <select [(ngModel)]="job.city" [disabled]="!cities.length">
+        <option value="">Select City</option>
+        <option *ngFor="let c of cities" [value]="c">
+          {{ c }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <label>Level</label>
+  <select [(ngModel)]="job.level">
+    <option value="">Select Level</option>
+    <option value="Junior">Junior</option>
+    <option value="Mid">Mid</option>
+    <option value="Senior">Senior</option>
+  </select>
+
+  <label>Required Programming Languages</label>
+  <app-multi-select
+    [items]="languages"
+    [(ngModel)]="job.requiredLanguage"
+    placeholder="Select or add languages">
+  </app-multi-select>
+
+  <!-- QUESTIONS -->
+  <div class="questions-section">
+    <h3>Application Questions</h3>
+
+    <div class="question" *ngFor="let q of job.questions; let i = index">
+      <input
+        type="text"
+        placeholder="Question"
+        [(ngModel)]="q.questionName"
+      />
+
+      <select [(ngModel)]="q.answerType">
+        <option value="Text">Text</option>
+        <option value="Record">Voice Record</option>
+      </select>
+
+      <button class="remove" (click)="removeQuestion(i)">✕</button>
+    </div>
+
+    <button class="btn outline" (click)="addQuestion()">
+      + Add Question
+    </button>
+  </div>
+
+  <button class="btn primary submit" (click)="submitJob()">
+    Publish Job
+  </button>
+</div>

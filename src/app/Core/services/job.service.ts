@@ -38,5 +38,11 @@ export class JobService {
     formData
   );
 }
+
+createJob(body: any){
+    return this.http.post(
+        `${this.baseUrl}/create-job`, body
+    )
+}
    
 }

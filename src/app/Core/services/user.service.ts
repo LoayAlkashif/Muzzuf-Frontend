@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { UserProfile } from '../../Shared/models/user.model';
 
 @Injectable({ providedIn: 'root' })
-export class UserService {
+export class  UserService {
 
   private baseUrl = 'http://localhost:5016/api/User';
 
@@ -30,7 +30,7 @@ export class UserService {
     )
   }
 
-  updateUser(id: string, body: any) {
+  updateUser(id: string | null, body: any) {
   return this.http.put(
     `${this.baseUrl}/update-user/${id}`,
     body
@@ -43,6 +43,17 @@ uploadCv(formData: FormData) {
     formData
   );
 }
+
+uploadCompanyLogo(file: File) {
+  const formData = new FormData();
+  formData.append('file', file);
+
+  return this.http.post(
+    'http://localhost:5016/api/User/company-logo',
+    formData
+  );
+}
+
 
 
   

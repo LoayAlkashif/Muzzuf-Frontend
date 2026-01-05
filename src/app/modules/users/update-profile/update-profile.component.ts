@@ -6,6 +6,8 @@ import { AuthService } from '../../../Core/services/auth.service';
 import { Router } from '@angular/router';
 import { MultiSelectComponent } from '../../../Shared/multi-select/multi-select.component';
 import { REGIONS } from '../../../Core/DTO/register.Dto';
+import { UserProfile } from '../../../Shared/models/user.model';
+import { skills } from '../../../Core/DTO/constantVar';
 
 
 @Component({
@@ -16,27 +18,22 @@ import { REGIONS } from '../../../Core/DTO/register.Dto';
   styleUrl: './update-profile.component.css'
 })
 export class UpdateProfileComponent implements OnInit {
-activeTab: 'general' | 'skills' | 'cv' = 'general';
-user: any;
+activeTab: 'general' | 'skills' | 'cv' | 'company' | 'logo'= 'general';
+user!: UserProfile;
 
 isEmployee = false;
+isEmployer = false;
 
 regions = REGIONS
 cities: string[] = [];
+userId!: string | null;
 
-
-allSkills: string[] = [
-    'C#',
-    'ASP.NET Core',
-    'Angular',
-    'React',
-    'SQL',
-    'Docker'
-  ];
+allSkills: string[] = skills;
 
   selectedSkills: string[] = [];
 
   selectedCv!:File;
+  companyLogoFile: File | null = null;
 
   /**
    *
@@ -51,7 +48,8 @@ allSkills: string[] = [
     }
 
     this.isEmployee = this.authService.isEmployee();
-
+    this.isEmployer = this.authService.isEmployer();
+    this.userId = this.authService.getUserId();
     this.loadProfile()
 
   }
@@ -78,7 +76,7 @@ allSkills: string[] = [
         city: this.user.city
       }
 
-      this.userService.updateUser(this.user.id, body).subscribe(() => {
+      this.userService.updateUser(this.userId, body).subscribe(() => {
         this.loadProfile()
       })
     }
@@ -87,7 +85,7 @@ allSkills: string[] = [
       const body = {
         programmingLanguages: this.selectedSkills
       }
-      this.userService.updateUser(this.user.id, body).subscribe(() => {
+      this.userService.updateUser(this.userId, body).subscribe(() => {
         this.loadProfile()
       })
     }
@@ -118,4 +116,32 @@ allSkills: string[] = [
 }
 
 
+saveCompanyInfo(){
+  const body = {
+    companyName: this.user.companyName,
+    companyDescription: this.user.companyDescription
+  }
+
+  this.userService.updateUser(this.userId, body).subscribe(() => {
+    this.loadProfile();
+  })
+}
+
+onCompanyLogoSelected(event: Event) {
+  const input = event.target as HTMLInputElement;
+  if (input.files && input.files.length > 0) {
+    this.companyLogoFile = input.files[0];
+  }
+}
+
+
+uploadCompanyLogo() {
+  if (!this.companyLogoFile) return;
+
+  this.userService.uploadCompanyLogo(this.companyLogoFile)
+    .subscribe(() => {
+      this.companyLogoFile = null;
+      this.loadProfile();
+    });
+}
 }

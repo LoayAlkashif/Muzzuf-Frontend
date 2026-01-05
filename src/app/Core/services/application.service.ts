@@ -26,15 +26,20 @@ export class ApplicationService{
     applyForJob(jobId: number, formData: FormData): Observable<any>{
         return this.http.post(`${this.baseUrl}/apply-job/${jobId}`, formData);
     }
+    
+   getJobApplications(jobId: string, page:number, limit:number , query:string) {
+  return this.http.get<PagedResult<any>>(
+    `${this.baseUrl}/job/${jobId}?page=${page}&limit=${limit}&query=${query}`
+  );
+}
 
-    // Employer get job applications 
-    getJobApplications(jobId: number): Observable<any[]>{
-        return this.http.get<any[]>(`${this.baseUrl}/job/${jobId}`)
-    }
+acceptApplication(applicationId: number) {
+  return this.http.put(`${this.baseUrl}/${applicationId}/accept`, {});
+}
 
-    // accept application
-    // acceptEmployeeApplication(applicationId: number){
-    //     return this.http.put(`${this.baseUrl}/${applicationId}/accept`);
-    // }
+rejectApplication(applicationId: number) {
+  return this.http.put(`${this.baseUrl}/${applicationId}/reject`, {});
+}
+
 
 }

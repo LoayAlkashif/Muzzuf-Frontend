@@ -9,7 +9,7 @@ export interface UserProfile {
   programmingLanguages?: string[];
   views?: number;
   cvUrl?: string;
-  comapnyName?: string;
+  companyName?: string;
   companyDescription?: string;
   companyLogoUrl?: string;
 }

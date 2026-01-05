@@ -6,6 +6,7 @@ import { Router, RouterLink } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { MultiSelectComponent } from '../../../Shared/multi-select/multi-select.component';
+import { skills } from '../../../Core/DTO/constantVar';
 
 
 @Component({
@@ -39,14 +40,7 @@ export class RegisterComponent {
     userType: undefined
   };
 
-  languages: string[] = [
-    'C#',
-    'ASP.NET Core',
-    'Angular',
-    'React',
-    'SQL',
-    'Docker'
-  ];
+  languages: string[] = skills
 
   regions = REGIONS;
   cities: string[] = [];

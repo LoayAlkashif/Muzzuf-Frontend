@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { NotFoundComponent } from './Shared/Components/not-found/not-found.component';
+import { ViewApplicationsComponent } from './modules/applications/view-applications/view-applications.component';
 
 export const routes: Routes = [
     {path: '', redirectTo: 'jobs', pathMatch: 'full' },
@@ -18,6 +19,9 @@ export const routes: Routes = [
     {
         path: 'application',
         loadChildren: () => import('./modules/applications/applications.module').then(m => m.ApplicationsModule)
+    },
+    {
+        path: 'jobs/:id/applications', component: ViewApplicationsComponent
     },
      { path: '**', component: NotFoundComponent }
 ];

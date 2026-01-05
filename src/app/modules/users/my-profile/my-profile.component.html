@@ -93,7 +93,7 @@
 
     <!-- COMPANY (Employer) -->
     <section class="section"
-             *ngIf="isEmployer && user.comapnyName">
+             *ngIf="isEmployer">
       <h3>Company</h3>
 
       <div class="company-card">
@@ -102,7 +102,7 @@
           class="company-logo" />
 
         <div>
-          <p class="company-name">{{ user.comapnyName }}</p>
+          <p class="company-name">{{ user.companyName }}</p>
           <p class="company-desc">{{ user.companyDescription }}</p>
         </div>
       </div>

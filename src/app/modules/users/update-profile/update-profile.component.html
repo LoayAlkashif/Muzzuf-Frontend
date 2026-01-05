@@ -10,7 +10,7 @@
     </div>
 
     <div
-    *ngIf="isEmployee"
+      *ngIf="isEmployee"
       class="menu-item"
       [class.active]="activeTab === 'skills'"
       (click)="activeTab = 'skills'"
@@ -19,13 +19,34 @@
     </div>
 
     <div
-    *ngIf="isEmployee"
+      *ngIf="isEmployee"
       class="menu-item"
       [class.active]="activeTab === 'cv'"
       (click)="activeTab = 'cv'"
     >
       Upload CV
     </div>
+
+
+     <div
+    *ngIf="isEmployer"
+    class="menu-item"
+    [class.active]="activeTab === 'company'"
+    (click)="activeTab = 'company'"
+  >
+    Company Info
+  </div>
+
+  <div
+    *ngIf="isEmployer"
+    class="menu-item"
+    [class.active]="activeTab === 'logo'"
+    (click)="activeTab = 'logo'"
+  >
+    Upload Logo
+  </div>
+
+
   </div>
 
   <!-- RIGHT -->
@@ -86,5 +107,39 @@
 
       <button class="btn primary" (click)="uploadCv()">Upload New CV</button>
     </div>
+
+
+    <div *ngIf="activeTab === 'company' && isEmployer">
+      <h2>Company Information</h2>
+
+      <label>Company Name</label>
+      <input [(ngModel)]="user.companyName" />
+
+      <label>Company Description</label>
+      <textarea rows="4" [(ngModel)]="user.companyDescription"></textarea>
+
+      
+      <button class="btn primary" (click)="saveCompanyInfo()">
+        Save Company Info
+      </button>
+
+    </div>
+
+    <div *ngIf="activeTab === 'logo' && isEmployer">
+      <h2>Upload Company Logo</h2>
+
+      <div class="logo-preview" *ngIf="user.companyLogoUrl">
+        <img style="height: 150px;" [src]="user.companyLogoUrl" />
+      </div>
+
+      <input type="file" accept="image/*" (change)="onCompanyLogoSelected($event)" />
+
+      <button class="btn primary" (click)="uploadCompanyLogo()">
+        Upload Logo
+      </button>
+    </div>
+
+
+
   </div>
 </div>

@@ -109,11 +109,6 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/application/my-applications'])
   }
 
-  goToEditCompanyProfile() {
-    this.showMeMenu = false;
-    this.router.navigate(['/user/profile'])
-  }
-
   logOut(){
     this.authService.logout();
     this.showMeMenu = false;
