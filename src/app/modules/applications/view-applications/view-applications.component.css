@@ -84,6 +84,12 @@
   overflow-y: auto;
 }
 
+.userProfile{
+  cursor: pointer;
+}
+.userProfile:hover{
+  color: var(--primary);
+}
 .application-details h2 {
   margin-bottom: 4px;
 }

@@ -87,6 +87,22 @@
   color: #fff;
 }
 
+.btn.danger {
+  background: #dc2626;
+  color: white;
+}
+
+.btn.danger:hover {
+  background: #b91c1c;
+}
+
+.btn.danger:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+
+
 .btn.primary:hover {
   background: #1e4fd8;
 }

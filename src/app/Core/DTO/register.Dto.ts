@@ -9,7 +9,7 @@ export interface RegisterDto {
   bio?: string;
 
   programmingLanguages?: string[];
-  level?: 'Junior' | 'Mid' | 'Senior';
+  level?: 'Junior' | 'Mid' | 'Senior' | '';
 
   companyName?: string;
   companyDescription?: string;

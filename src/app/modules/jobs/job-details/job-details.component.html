@@ -27,11 +27,11 @@
             <button
               class="btn primary"
               *ngIf="isEmployee"
-              [disabled]="isApplyDisabled()"
+              [disabled]="!job.isActive || isApplyDisabled()"
               [ngClass]="job.applicationStatus?.toLowerCase()"
               (click)="onActionClick()"
             >
-              {{ getActionText() }}
+              {{ job.isActive?  getActionText() : 'Job Closed' }}
             </button>
 
             <button
@@ -41,6 +41,17 @@
             >
               View Applications
             </button>
+
+            <div class="actions-right" *ngIf="isEmployer">
+              <button
+                class="btn danger"
+                [disabled]="!job.isActive "
+                (click)="closeJob()"
+              >
+                {{ (job.isActive ? 'Close Job' : 'Job Closed') }}
+              </button>
+            </div>
+
           </div>
         </div>
 

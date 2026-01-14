@@ -34,7 +34,7 @@ export class RegisterComponent {
     city: '',
     bio: '',
     programmingLanguages: [],
-    level: undefined,
+    level: '',
     companyName: '',
     companyDescription: '',
     userType: undefined

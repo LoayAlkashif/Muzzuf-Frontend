@@ -44,5 +44,9 @@ createJob(body: any){
         `${this.baseUrl}/create-job`, body
     )
 }
+
+deactiveJob(jobId: string){
+    return this.http.patch(`${this.baseUrl}/${+jobId}/deactive`,{});
+}
    
 }

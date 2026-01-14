@@ -2,7 +2,9 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ApplicationService } from '../../../Core/services/application.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { LoadingButtonComponent } from '../../../Shared/Components/loading-button/loading-button.component';
+import { LoaderService } from '../../../Core/services/loader.service';
 
 @Component({
   selector: 'app-view-applications',
@@ -15,6 +17,7 @@ export class ViewApplicationsComponent implements OnInit {
 
   jobId!: string;
   jobTitle: string = '';
+  actionLoading = false;
 
   applications: any[] =[];
   selectedApplication: any = null;
@@ -28,7 +31,8 @@ export class ViewApplicationsComponent implements OnInit {
   isLoading =false;
 
 
-  constructor(private appService: ApplicationService, private route: ActivatedRoute) {}
+  constructor(private appService: ApplicationService, private route: ActivatedRoute,
+     private router: Router, private loader: LoaderService) {}
 
   ngOnInit(): void {
     this.jobId = this.route.snapshot.paramMap.get('id')!;
@@ -57,16 +61,34 @@ export class ViewApplicationsComponent implements OnInit {
   }
 
   acceptApp(applicationId: number){
-    this.appService.acceptApplication(applicationId).subscribe(() => {
-      this.loadApplications()
-    })
+    this.loader.show();
+     this.appService.acceptApplication(applicationId).subscribe({
+    next: () => {
+      this.loadApplications();
+      this.selectedApplication = null;
+      this.loader.hide();
+    },
+    error: () => {
+      this.loader.hide();
+    }
+  });
   }
   
-  rejectApp(applicationId: number){
-    this.appService.rejectApplication(applicationId).subscribe(() => {
-      this.loadApplications()
-    })
-  }
+  rejectApp(applicationId: number) {
+  this.loader.show();
+
+  this.appService.rejectApplication(applicationId).subscribe({
+    next: () => {
+      this.loadApplications();
+      this.selectedApplication = null;
+      this.loader.hide();
+    },
+    error: () => {
+      this.loader.hide();
+    }
+  });
+}
+
 
   nextPage() {
     if (this.page < this.totalPages) {
@@ -80,5 +102,9 @@ export class ViewApplicationsComponent implements OnInit {
       this.page--;
       this.loadApplications();
     }
+  }
+  
+  goToProfile(userId: string){
+    this.router.navigate(['/user', userId]);
   }
 }

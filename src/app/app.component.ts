@@ -4,11 +4,12 @@ import { NgIf } from '@angular/common';
 import { filter } from 'rxjs';
 
 import { NavbarComponent } from './Shared/Components/navbar/navbar.component';
+import { LoadingButtonComponent } from './Shared/Components/loading-button/loading-button.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavbarComponent, NgIf],
+  imports: [RouterOutlet, NavbarComponent, NgIf, LoadingButtonComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { UserService } from '../../../Core/services/user.service';
 import { AuthService } from '../../../Core/services/auth.service';
@@ -34,6 +34,9 @@ allSkills: string[] = skills;
 
   selectedCv!:File;
   companyLogoFile: File | null = null;
+
+  @ViewChild('cvInput') cvInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('logoInput') logoInput!: ElementRef<HTMLInputElement>;
 
   /**
    *
@@ -102,6 +105,8 @@ allSkills: string[] = skills;
       formData.append('file', this.selectedCv);
 
       this.userService.uploadCv(formData).subscribe(() => {
+        this.selectedCv = undefined!;
+        this.cvInput.nativeElement.value = '';
         this.loadProfile();
       })
     }
@@ -141,6 +146,7 @@ uploadCompanyLogo() {
   this.userService.uploadCompanyLogo(this.companyLogoFile)
     .subscribe(() => {
       this.companyLogoFile = null;
+      this.logoInput.nativeElement.value = '';
       this.loadProfile();
     });
 }

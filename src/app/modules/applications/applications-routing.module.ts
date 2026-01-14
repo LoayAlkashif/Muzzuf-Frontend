@@ -4,8 +4,8 @@ import { MyApplicationsComponent } from './my-applications/my-applications.compo
 import { ViewApplicationsComponent } from './view-applications/view-applications.component';
 
 const routes: Routes = [
-  {path: 'my-applications', component: MyApplicationsComponent},
-  {path: ':id/applications', component: ViewApplicationsComponent}
+  {path: 'my-applications', component: MyApplicationsComponent, data: {roles: ['Employee']}},
+  // {path: ':id/applications', component: ViewApplicationsComponent}
 ];
 
 @NgModule({

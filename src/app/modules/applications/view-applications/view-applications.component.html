@@ -35,7 +35,9 @@
 
     <ng-container *ngIf="selectedApplication; else emptyState">
 
-      <h2>{{ selectedApplication.employeeName }}</h2>
+<h2 class="userProfile"  (click)="goToProfile(selectedApplication.employeeId)">
+  {{ selectedApplication.employeeName }}
+</h2>
 
       <a
         *ngIf="selectedApplication.cvUrl"

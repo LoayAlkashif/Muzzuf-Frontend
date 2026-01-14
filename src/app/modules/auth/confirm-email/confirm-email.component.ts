@@ -40,7 +40,7 @@ export class ConfirmEmailComponent implements OnInit {
           this.message = 'Email verified successfully';
 
           setTimeout(() => {
-            this.router.navigate(['/auth/signin']);
+            this.router.navigate(['/auth/login']);
           }, 1500);
         },
         error: (err) => {

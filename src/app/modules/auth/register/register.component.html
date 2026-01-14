@@ -46,7 +46,7 @@
                     <option *ngFor="let c of cities" [value]="c">{{ c }}</option>
             </select>
 
-                  <textarea placeholder="Bio (optional)" [(ngModel)]="model.bio" name="bio"></textarea>
+                  <!-- <textarea placeholder="Bio (optional)" [(ngModel)]="model.bio" name="bio"></textarea> -->
 
             <h4>What are you looking for?</h4>
             <div class="radio-group">
@@ -65,6 +65,7 @@
 
              <!-- Employee -->
       <div *ngIf="model.userType === 'Employee'">
+        <label for="Level">Select your Seniority</label>
         <select [(ngModel)]="model.level" name="level">
           <option value="">Select Level</option>
           <option value="Junior">Junior</option>
@@ -87,11 +88,12 @@
 
         <!-- Employer -->
       <div *ngIf="model.userType === 'Employer'">
+        <label for="CompanyName">Company Name</label>
         <input placeholder="Company Name"
                [(ngModel)]="model.companyName" name="CompanyName" />
 
-        <textarea placeholder="Company Description"
-                  [(ngModel)]="model.companyDescription" name="CompanyDescription"></textarea>
+        <!-- <textarea placeholder="Company Description"
+                  [(ngModel)]="model.companyDescription" name="CompanyDescription"></textarea> -->
       </div>
 
       <span class="error" *ngIf="errorMessage">{{ errorMessage }}</span>

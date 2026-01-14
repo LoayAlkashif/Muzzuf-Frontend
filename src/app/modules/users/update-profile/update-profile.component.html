@@ -43,7 +43,7 @@
     [class.active]="activeTab === 'logo'"
     (click)="activeTab = 'logo'"
   >
-    Upload Logo
+    Company Logo
   </div>
 
 
@@ -103,7 +103,7 @@
         📄 View current CV
       </a>
 
-      <input type="file" (change)="onCvSelected($event)" />
+      <input type="file" (change)="onCvSelected($event)"  #cvInput/>
 
       <button class="btn primary" (click)="uploadCv()">Upload New CV</button>
     </div>
@@ -132,7 +132,7 @@
         <img style="height: 150px;" [src]="user.companyLogoUrl" />
       </div>
 
-      <input type="file" accept="image/*" (change)="onCompanyLogoSelected($event)" />
+      <input type="file" accept="image/*" (change)="onCompanyLogoSelected($event)"  #logoInput/>
 
       <button class="btn primary" (click)="uploadCompanyLogo()">
         Upload Logo

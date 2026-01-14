@@ -65,6 +65,8 @@ export class JobDetailsComponent implements OnInit {
   }
 
   openApply() {
+    if (!this.job.isActive) return;
+
     if (!this.authService.isLoggedIn()) {
       this.router.navigate(['/auth/login']);
       return;
@@ -94,6 +96,8 @@ export class JobDetailsComponent implements OnInit {
   }
 
   onActionClick() {
+    if (!this.job.isActive) return;
+    
     if (!this.job.applicationStatus) {
       this.openApply();
     }
@@ -208,5 +212,18 @@ export class JobDetailsComponent implements OnInit {
       },
       error: (err) => alert(err.error.message),
     });
+  }
+
+  closeJob(){
+    if(!confirm('Are you sure you want to deactive this job')) return;
+    this.jobService.deactiveJob(this.jobId).subscribe({
+      next: () => {
+        this.job.isActive = false;
+        
+      },
+      error: (err) => {
+        alert(err.error.message || 'Something went wrong');
+      }
+    })
   }
 }
