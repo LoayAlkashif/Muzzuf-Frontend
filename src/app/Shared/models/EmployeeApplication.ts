@@ -7,6 +7,7 @@ export interface EmployeeApplication {
   jobRegion: string;
   status: string;
   appliedAt: string;
+  isActive: boolean;
   answers: ApplicationAnswer[];
 }
 

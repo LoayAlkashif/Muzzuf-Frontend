@@ -13,6 +13,14 @@
       (click)="selectApplication(app)"
     >
 
+    <span
+  class="job-status-badge"
+  [class.closed]="!app.isActive"
+>
+  {{ app.isActive ? 'Active Job' : 'Closed Job' }}
+</span>
+
+
      <img
             class="company-logo"
             [src]="app.companyLogo || '/DCompany.jpg'"
@@ -65,7 +73,7 @@
           {{ ans.textAnswer }}
         </p>
 
-        <audio *ngIf="ans.recordUrl" controls>
+        <audio *ngIf="ans.answerType === 'Record'" controls>
           <source [src]="ans.recordUrl" />
         </audio>
 

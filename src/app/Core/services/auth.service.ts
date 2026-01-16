@@ -37,6 +37,10 @@ getCurrentUser(): UserProfile | null {
   return this.userSubject.value;
 }
 
+getToken(): string | null {
+  return localStorage.getItem('token');
+}
+
   isEmployer(): boolean {
     return this.getRole() === 'Employer';
   }
@@ -47,6 +51,14 @@ getCurrentUser(): UserProfile | null {
 
     setUser(user: UserProfile) {
     this.userSubject.next(user);
+  }
+
+  isTokenExpired():boolean{
+    const token = this.getToken();
+    if(!token) return true;
+
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    return payload.exp * 1000 < Date.now();
   }
 
   logout(){

@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { MultiSelectComponent } from '../../../Shared/multi-select/multi-select.component';
 import { skills } from '../../../Core/DTO/constantVar';
+import { LoaderService } from '../../../Core/services/loader.service';
 
 
 @Component({
@@ -22,7 +23,6 @@ export class RegisterComponent {
   errorMessage:string = '';
 
   successMessage: string = '';
-  showSuccess : boolean = false;
 
   model: RegisterDto = {
     fullName: '',
@@ -48,25 +48,26 @@ export class RegisterComponent {
   /**
    *
    */
-  constructor(private http:HttpClient, private router:Router) {}
+  constructor(private http:HttpClient, private router:Router, private loaderService: LoaderService) {}
 
   onRegionChange(region:string) {
     const selectedRegion = this.regions.find(r => r.name === region);
     this.cities = selectedRegion ? selectedRegion.cities: [];
-    this.model.city = ''; // Reset city selection when region changes
+    this.model.city = '';
   }
 
   register(){
+    this.loaderService.show();
     this.http.post(this.apiUrl, this.model).subscribe({
       next: () => {
-        this.showSuccess  = true;
+        this.loaderService.hide();
         alert('Registration successful! Please check your email to activate your account.');
         this.router.navigate(['/auth/login']);
       },
       error: (error) => {
+        this.loaderService.hide();
       console.error('Registration error:', error);
       this.errorMessage = error.error?.message || error.message || 'An error occurred during registration.';
-      this.showSuccess = false;
 }
     })
   }
