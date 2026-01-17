@@ -1,12 +1,9 @@
 <div class="job-details-page" *ngIf="job">
   <div class="job-layout">
-
     <!-- LEFT CARD -->
     <div class="job-card">
-
       <!-- HEADER -->
       <div class="job-header">
-
         <!-- LEFT INFO -->
         <div class="job-info">
           <h1 class="job-title">{{ job.title }}</h1>
@@ -15,43 +12,40 @@
             {{ job.companyName || job.employerName }}
           </p>
 
-          <p class="location">
-            {{ job.city }}, {{ job.region }}
-          </p>
+          <p class="location">{{ job.city }}, {{ job.region }}</p>
 
-          <span class="level">
-            Seniority: {{ job.level }}
-          </span>
+          <span class="level"> Seniority: {{ job.level }} </span>
 
           <div class="actions">
-            <button
-              class="btn primary"
-              *ngIf="isEmployee"
-              [disabled]="!job.isActive || isApplyDisabled()"
-              [ngClass]="job.applicationStatus?.toLowerCase()"
-              (click)="onActionClick()"
-            >
-              {{ job.isActive?  getActionText() : 'Job Closed' }}
-            </button>
+            <div class="actions-left">
+              <button
+                class="btn primary"
+                *ngIf="isEmployee"
+                [disabled]="!job.isActive || isApplyDisabled()"
+                [ngClass]="job.applicationStatus?.toLowerCase()"
+                (click)="onActionClick()"
+              >
+                {{ job.isActive ? getActionText() : "Job Closed" }}
+              </button>
 
-            <button
-              class="btn primary"
-              *ngIf="isEmployer"
-              (click)="viewApplications()"
-            >
-              View Applications
-            </button>
+              <button
+                class="btn primary"
+                *ngIf="isEmployer"
+                (click)="viewApplications()"
+              >
+                View Applications
+              </button>
+            </div>
 
             <div class="actions-right" *ngIf="isEmployer">
               <button
                 class="btn danger"
-                [disabled]="!job.isActive "
+                [disabled]="!job.isActive"
                 (click)="closeJob()"
               >
-                {{ (job.isActive ? 'Close Job' : 'Job Closed') }}
+                {{ job.isActive ? "Close Job" : "Job Closed" }}
               </button>
             </div>
-
           </div>
         </div>
 
@@ -63,7 +57,6 @@
             alt="company logo"
           />
         </div>
-
       </div>
 
       <!-- CONTENT -->
@@ -78,9 +71,8 @@
 
       <section>
         <h3>Job Description</h3>
-        <p>{{ job.description }}</p>
+        <p class="job-description">{{ job.description }}</p>
       </section>
-
     </div>
 
     <!-- RIGHT PANEL -->
@@ -91,75 +83,65 @@
       </div>
 
       <div class="question" *ngFor="let q of job.questions || []">
+        <label>{{ q.questionName }}</label>
 
-  <label>{{ q.questionName }}</label>
+        <!-- TEXT -->
+        <div *ngIf="q.answerType === 'Text'" class="text-answer-box">
+          <textarea
+            rows="4"
+            maxlength="500"
+            placeholder="Write your answer (max 500 characters)"
+            [(ngModel)]="textAnswers[q.id]"
+          ></textarea>
 
-  <!-- TEXT -->
-<div *ngIf="q.answerType === 'Text'" class="text-answer-box">
+          <div class="char-count">
+            {{ textAnswers[q.id]?.length || 0 }} / 500
+          </div>
+        </div>
 
-  <textarea
-    rows="4"
-    maxlength="500"
-    placeholder="Write your answer (max 500 characters)"
-    [(ngModel)]="textAnswers[q.id]"
-  ></textarea>
+        <!-- RECORD -->
+        <div *ngIf="q.answerType === 'Record'" class="record-muzzuf">
+          <!-- BEFORE RECORD -->
+          <button
+            *ngIf="!isRecording[q.id] && !audioUrls[q.id]"
+            class="record-btn"
+            (click)="startRecording(q.id)"
+          >
+            🎤 Record Answer
+          </button>
 
-  <div class="char-count">
-    {{ (textAnswers[q.id]?.length || 0) }} / 500
-  </div>
+          <!-- RECORDING -->
+          <div *ngIf="isRecording[q.id]" class="recording-box">
+            <div class="progress">
+              <div
+                class="progress-bar"
+                [style.width.%]="(recordSeconds[q.id] / maxRecordSeconds) * 100"
+              ></div>
+            </div>
 
-</div>
+            <div class="time">
+              {{ recordSeconds[q.id] }} / {{ maxRecordSeconds }} sec
+            </div>
 
+            <button class="btn danger" (click)="stopRecording(q.id)">
+              ⏹ Stop
+            </button>
+          </div>
 
- <!-- RECORD -->
-<div *ngIf="q.answerType === 'Record'" class="record-muzzuf">
+          <!-- AFTER RECORD -->
+          <div *ngIf="audioUrls[q.id]" class="audio-preview">
+            <audio controls [src]="audioUrls[q.id]"></audio>
 
-  <!-- BEFORE RECORD -->
-  <button
-    *ngIf="!isRecording[q.id] && !audioUrls[q.id]"
-    class="record-btn"
-    (click)="startRecording(q.id)">
-    🎤 Record Answer
-  </button>
-
-  <!-- RECORDING -->
-  <div *ngIf="isRecording[q.id]" class="recording-box">
-
-    <div class="progress">
-      <div
-        class="progress-bar"
-        [style.width.%]="(recordSeconds[q.id] / maxRecordSeconds) * 100">
+            <button class="btn outline danger" (click)="deleteRecording(q.id)">
+              🗑 Delete & Re-record
+            </button>
+          </div>
+        </div>
       </div>
-    </div>
-
-    <div class="time">
-      {{ recordSeconds[q.id] }} / {{ maxRecordSeconds }} sec
-    </div>
-
-    <button class="btn danger" (click)="stopRecording(q.id)">
-      ⏹ Stop
-    </button>
-
-  </div>
-
-  <!-- AFTER RECORD -->
-  <div *ngIf="audioUrls[q.id]" class="audio-preview">
-
-    <audio controls [src]="audioUrls[q.id]"></audio>
-
-    <button class="btn outline danger" (click)="deleteRecording(q.id)">
-      🗑 Delete & Re-record
-    </button>
-
-  </div>
-
-</div>
-</div>
 
       <button class="btn primary full" (click)="submitApplication()">
         Submit Application
       </button>
     </div>
-
   </div>
 </div>

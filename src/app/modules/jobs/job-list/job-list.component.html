@@ -1,5 +1,3 @@
-<!-- HERO (Guest only) -->
-
 <div class="welcome">
   <h1 *ngIf="!isLoggedIn || !isEmployer"> Find the Best Jobs</h1>
   <p *ngIf="!isLoggedIn || !isEmployer">
@@ -21,26 +19,40 @@
 <!-- JOBS -->
 <div class="container">
   <div class="job-card" *ngFor="let job of jobs">
-    <a [routerLink]="['/jobs', job.id]">
-      <h3>{{job.title}}</h3>
-    </a>
-    <span class="company">{{ job.companyName }}</span>
-    <p class="location">{{ job.city }}, {{ job.region }}</p>
-    
-    <span class="level">Seniority: {{ job.level }} <br> <br></span>
-    <p class="desc">
-      {{ job.description | truncate:190 }}
-    </p>
 
-      <section>
-        <h3>Skills & Tools</h3>
-        <div class="skills">
-          <span *ngFor="let skill of job.requiredLanguage">
-            {{ skill }}
-          </span>
-        </div>
-      </section>
+  <div class="job-header">
+    <div class="job-info">
+      <a [routerLink]="['/jobs', job.id]">
+        <h3>{{ job.title }}</h3>
+      </a>
+
+      <span class="company">{{ job.companyName }}</span>
+      <p class="location">{{ job.city }}, {{ job.region }}</p>
+      <span class="level">Seniority: {{ job.level }}</span>
+    </div>
+
+    <img
+      [src]="job.companyLogo ? job.companyLogo : '/DCompany.jpg'"
+      class="company-logo"
+      alt="company logo"
+    />
   </div>
+
+  <p class="desc">
+    {{ job.description | truncate:190 }}
+  </p>
+
+  <section>
+    <h3>Skills & Tools</h3>
+    <div class="skills">
+      <span *ngFor="let skill of job.requiredLanguage">
+        {{ skill }}
+      </span>
+    </div>
+  </section>
+
+</div>
+
 
   <!-- PAGINATION -->
   <div class="pagination" >

@@ -22,8 +22,6 @@ color: inherit;
 }
 .job-card h3{
   cursor: pointer;
-}
-.job-card a:hover h3{
   color: var(--primary);
 }
 
@@ -83,6 +81,28 @@ color: inherit;
 .job-card:hover {
   box-shadow: 0 apx 14px rgba(0, 0, 0, 0, 8);
 }
+
+.job-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.job-info {
+  flex: 1;
+}
+
+.company-logo {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  border-radius: 10px;
+  border: 1px solid #eee;
+  background: #fafafa;
+  flex-shrink: 0;
+}
+
 
 .company {
   color: var(--text-muted);
