@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { EmployeeApplication } from "../../Shared/models/EmployeeApplication";
 import { PagedResult } from "../DTO/PagedResult";
+import { JobApplicationsResponseDto } from "../DTO/JobApplicationsResponseDto";
 
 @Injectable({
     providedIn: 'root'
@@ -28,7 +29,7 @@ export class ApplicationService{
     }
     
    getJobApplications(jobId: string, page:number, limit:number , query:string) {
-  return this.http.get<PagedResult<any>>(
+  return this.http.get<JobApplicationsResponseDto>(
     `${this.baseUrl}/job/${jobId}?page=${page}&limit=${limit}&query=${query}`
   );
 }

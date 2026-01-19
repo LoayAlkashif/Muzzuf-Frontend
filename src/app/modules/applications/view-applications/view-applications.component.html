@@ -2,7 +2,10 @@
 
   <!-- LEFT -->
   <div class="applications-list">
-    <h3>Applications of: {{jobTitle}}</h3>
+  <h3>Applications of: {{ jobTitle }}</h3>
+
+  <!-- APPLICATIONS LIST -->
+  <ng-container *ngIf="applications.length > 0; else noApplications">
 
     <div
       class="app-card"
@@ -10,9 +13,8 @@
       [class.active]="selectedApplication?.id === app.id"
       (click)="selectApplication(app)"
     >
-
       <img
-        class="company-logo"
+        class="userProfileImage"
         [src]="app.profileImageUrl || '/DProfile.png'"
         alt="Profile"
       />
@@ -26,9 +28,18 @@
       <span class="status" [class]="app.status.toLowerCase()">
         {{ app.status }}
       </span>
-
     </div>
-  </div>
+
+  </ng-container>
+
+  <!-- EMPTY STATE -->
+  <ng-template #noApplications>
+    <p class="empty">
+      🚫 There are no applications yet
+    </p>
+  </ng-template>
+</div>
+
 
   <!-- RIGHT -->
   <div class="application-details">

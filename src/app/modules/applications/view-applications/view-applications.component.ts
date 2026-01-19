@@ -43,10 +43,11 @@ export class ViewApplicationsComponent implements OnInit {
   loadApplications(){
     this.isLoading = true;
     this.appService.getJobApplications(this.jobId, this.page, this.limit, this.query).subscribe(res => {
-      this.applications = res.data;
-      this.totalPages = res.totalPages;
+      this.jobTitle = res.jobTitle;
+      this.applications = res.applications.data;
+      this.totalPages = res.applications.totalPages;
 
-      this.jobTitle = this.applications[0].jobTitle;
+      this.selectedApplication = null;
       this.isLoading = false;
     });
   }

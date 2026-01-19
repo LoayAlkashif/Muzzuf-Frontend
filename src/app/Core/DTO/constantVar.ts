@@ -10,41 +10,47 @@ export const skills = [
   "Debugging",
   "Version Control (Git)",
   "Unit Testing",
-
-  // Programming Languages
-  "C",
-  "C++",
   "C#",
-  "Java",
-  "Python",
   "JavaScript",
   "TypeScript",
-  "Go",
-  "PHP",
-  "SQL",
-
-  // Backend Development
   "ASP.NET Core",
   "Node.js",
   "Express.js",
   "NestJS",
   "RESTful APIs",
+  "JWT",
+  "Angular",
+  "Full Stack Development",
+"HTML5",
+  "CSS3",
+   "SQL Server",
+  "MySQL",
+  "PostgreSQL",
+  "MongoDB",
+  // Programming Languages
+  "C",
+  "C++",
+  "Java",
+  "Python",
+  "Go",
+  "PHP",
+  "SQL",
+
+  // Backend Development
+  
   "GraphQL",
   "Microservices",
   "Authentication & Authorization",
-  "JWT",
   "OAuth",
   "SignalR",
   "WebSockets",
 
   // Frontend Development
-  "HTML5",
-  "CSS3",
+  
   "SASS",
   "Bootstrap",
   "Tailwind CSS",
   "JavaScript ES6+",
-  "Angular",
   "React",
   "Next.js",
   "Responsive Design",
@@ -52,7 +58,6 @@ export const skills = [
   "UI/UX Basics",
 
   // Full Stack
-  "Full Stack Development",
   "Client-Server Architecture",
   "API Integration",
   "Server-Side Rendering",
@@ -61,10 +66,7 @@ export const skills = [
   "CI/CD",
 
   // Databases
-  "SQL Server",
-  "MySQL",
-  "PostgreSQL",
-  "MongoDB",
+ 
   "Redis",
   "Database Design",
   "ORM (Entity Framework, Prisma)",

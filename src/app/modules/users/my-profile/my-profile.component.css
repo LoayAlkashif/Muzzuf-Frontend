@@ -99,6 +99,7 @@
 /* BIO */
 .bio {
   line-height: 1.6;
+  white-space: pre-wrap;
   color: #333;
 }
 
