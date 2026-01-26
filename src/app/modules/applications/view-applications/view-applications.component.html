@@ -70,25 +70,32 @@
 
       <h3>Questions & Answers</h3>
 
-      <div
-        class="answer-box"
-        *ngFor="let ans of selectedApplication.answers"
-      >
+<ng-container *ngIf="selectedApplication.answers?.length > 0; else noQuestions">
 
-        <p class="question">
-          {{ ans.questionName }}
-        </p>
+  <div
+    class="answer-box"
+    *ngFor="let ans of selectedApplication.answers"
+  >
+    <p class="question">
+      {{ ans.questionName }}
+    </p>
 
-        <p class="answer" *ngIf="ans.answerType === 'Text'">
-          {{ ans.textAnswer }}
-        </p>
+    <p class="answer" *ngIf="ans.answerType === 'Text'">
+      {{ ans.textAnswer }}
+    </p>
 
-        <audio *ngIf="ans.answerType === 'Record'" controls>
-          <source [src]="ans.recordUrl" />
-        </audio>
+    <audio *ngIf="ans.answerType === 'Record'" controls>
+      <source [src]="ans.recordUrl" />
+    </audio>
+  </div>
 
-      </div>
+</ng-container>
 
+<ng-template #noQuestions>
+  <p class="empty">
+     There's no questions in this job
+  </p>
+</ng-template>
 
       
 <!-- ACTIONS AFTER QUESTIONS -->
@@ -99,13 +106,13 @@
   <button
     class="accept-btn"
     (click)="acceptApp(selectedApplication.id)">
-    ✅ Accept Application
+    Accept Application
   </button>
 
   <button
     class="reject-btn"
     (click)="rejectApp(selectedApplication.id)">
-    ❌ Reject Application
+     Reject Application
   </button>
 </div>
 

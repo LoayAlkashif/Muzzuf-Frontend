@@ -210,7 +210,7 @@ export class JobDetailsComponent implements OnInit {
         this.showApplyPanel = false;
         this.loadJob();
       },
-      error: (err) => alert(err.error.message),
+      error: (err) => alert(err.error.message || "Something went wrong"),
     });
   }
 
